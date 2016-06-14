@@ -2,7 +2,7 @@
 % Please edit documentation in R/hello.R
 \name{hello.name}
 \alias{hello.name}
-\title{Title}
+\title{Title1}
 \usage{
 hello.name(name)
 }
@@ -10,6 +10,6 @@ hello.name(name)
 \item{name}{}
 }
 \description{
-Title
+Title1
 }
 
