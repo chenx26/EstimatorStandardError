@@ -2,14 +2,20 @@
 % Please edit documentation in R/hello.R
 \name{hello.name}
 \alias{hello.name}
-\title{Title1}
+\title{Print "Hello, name"}
 \usage{
 hello.name(name)
 }
 \arguments{
-\item{name}{}
+\item{name}{The name to say hello to}
+}
+\value{
+None
 }
 \description{
-Title1
+Print "Hello, name"
+}
+\examples{
+hello("world")
 }
 

@@ -7,9 +7,15 @@
 hello2(yourname)
 }
 \arguments{
-\item{yourname}{}
+\item{yourname}{The name to greet}
+}
+\value{
+None
 }
 \description{
 Print "Greetings, yourname"
+}
+\examples{
+hello2("world")
 }
 
