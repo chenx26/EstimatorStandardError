@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' hello("world")
+#' hello.name("world")
 hello.name <- function(name) {
   print(paste("hello,",name))
 }

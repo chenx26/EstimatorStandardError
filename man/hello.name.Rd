@@ -16,6 +16,6 @@ None
 Print "Hello, name"
 }
 \examples{
-hello("world")
+hello.name("world")
 }
 
