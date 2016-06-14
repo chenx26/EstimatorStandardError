@@ -9,7 +9,7 @@
 #' @examples
 #' hello.name("world")
 hello.name <- function(name) {
-  print(paste("hello,",name))
+  print(paste("hello,",name,sep=" "))
 }
 
 
