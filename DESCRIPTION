@@ -1,8 +1,8 @@
 Package: EstimatorStandardError
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Risk/Performance Measure Estimator Standard Error (Title Case)
 Version: 0.1.0
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Xin", "Chen", email = "chenx26@uw.edu", role = c("aut", "cre"))
 Description: More about what it does (maybe more than one line)
-License: What license is it under?
+License: GNU V3
 LazyData: TRUE
