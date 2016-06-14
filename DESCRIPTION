@@ -3,7 +3,10 @@ Type: Package
 Title: Risk/Performance Measure Estimator Standard Error
 Version: 0.1.0
 Authors@R: person("Xin", "Chen", email = "chenx26@uw.edu", role = c("aut", "cre"))
-Description: This package contains functions to compute the standard error of popular risk/performance measures using different methods
+Description: This package contains functions to compute the standard error of
+    popular risk/performance measures using different methods
 License: GPL-3
 LazyData: TRUE
-Suggests: testthat
+Suggests:
+    testthat
+RoxygenNote: 5.0.1

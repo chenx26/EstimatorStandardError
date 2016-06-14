@@ -12,3 +12,15 @@ hello.name <- function(name) {
 }
 
 
+#' Print "Greetings, yourname"
+#'
+#' @param yourname
+#'
+#' @return
+#' @export
+#'
+#' @examples
+hello2=function(yourname){
+  print(paste("Greetings,",yourname))
+}
+
