@@ -61,3 +61,25 @@ RES=function(data,alpha=0.01,beta=0.1){
   return(-mean(data[(data<=quantile(data,beta))&(data>=quantile(data,alpha))]))
 }
 
+#' Compute sample Sortino Ratio
+#'
+#' @param data vector of data
+#' @param rf risk-free rate
+#'
+#' @return Sample SoR
+#' @export
+#'
+#' @examples
+#' SoR(rnorm(10))
+SoR = function(data, rf = 0){
+  mu.hat = mean(data)
+  sigma.minus.hat = sqrt(mean((data-mu.hat)^2*(data<=mu.hat)))
+  SoR.hat = (mu.hat-rf)/sigma.minus.hat
+  return(SoR.hat)
+}
+
+
+STARR = function(data, rf = 0){
+
+}
+

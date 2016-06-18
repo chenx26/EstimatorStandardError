@@ -15,7 +15,7 @@
 SE.mu.iid=function(data){
   mu=mean(data)
   N=length(data)
-  return(sqrt(1/N*sum((data-mu)^2)))
+  return(sqrt(sum((data-mu)^2)))
 }
 
 #' Function to compute the asymptotic standard error of the sample standard deviation for the given IID data
@@ -32,10 +32,11 @@ SE.mu.iid=function(data){
 #' SE.SD.iid(x)
 
 SE.SD.iid=function(data){
-  mu=mean(data)
-  N=length(data)
-  variance=mean((data-mu)^2)
-  return(sqrt((mean(sum(data-mu)^4)-variance^4)/4/variance))
+  data=data^2
+  # mu=mean(data)
+  # N=length(data)
+  # variance=mean((data-mu)^2)
+  return(sqrt(var(data)))
 }
 
 #' Function to compute the asymptotic standard error of the sample value-at-risk for the given IID data
@@ -169,3 +170,29 @@ SE.STARR.iid=function(data,alpha=0.05,rf=0){
   +STARR.hat^2/ES.hat^2*B
   return(sqrt(V))
 }
+
+#' Asymptotic Standard Error of standard deviation for xts object
+#'
+#' @param x xts object
+#' @param na.rm whether NAs should be omitted or not
+#'
+#' @return Asymptotic SE of SD for the xts object
+#' @export
+#'
+#' @examples
+#' SE.SD.iid.xts(rnorm(10))
+SE.SD.iid.xts=function(x,na.rm=FALSE){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    if(na.rm) x <- na.omit(x)
+    return(SE.SD.iid(x))
+  }
+  else {
+    x <- coredata(x)
+    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.SD.iid))
+  }
+}
+
+
+

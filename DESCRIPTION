@@ -7,6 +7,10 @@ Description: This package contains functions to compute the standard error of
     popular risk/performance measures using different methods.
 License: GPL-3
 LazyData: TRUE
+Imports:
+    TSA,coda,h2o,nse,PerformanceAnalytics
 Suggests:
     testthat
+Depends:
+    xts,zoo
 RoxygenNote: 5.0.1
