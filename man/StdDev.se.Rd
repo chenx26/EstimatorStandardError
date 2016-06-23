@@ -72,23 +72,6 @@ standard deviation of the portfolio, and increasing its weight in relation
 to the rest of the portfolio would decrease the overall portfolio standard
 deviation.
 }
-\examples{
-
-    data(edhec)
-
-    # first do normal StdDev calc
-    StdDev(edhec)
-    # or the equivalent
-    StdDev(edhec, portfolio_method="single")
-
-    # now with outliers squished
-    StdDev(edhec, clean="boudt")
-
-    # add Component StdDev for the equal weighted portfolio
-    StdDev(edhec, clean="boudt", portfolio_method="component")
-
-
-}
 \author{
 Brian G. Peterson and Kris Boudt
 }

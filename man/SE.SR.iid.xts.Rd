@@ -4,7 +4,7 @@
 \alias{SE.SR.iid.xts}
 \title{Wrapper function to compute the standard error(s) of the Sharpe Raio for an xts object}
 \usage{
-SE.SR.iid.xts(x, ...)
+SE.SR.iid.xts(x, ..., rf = 0)
 }
 \arguments{
 \item{x}{the xts object}

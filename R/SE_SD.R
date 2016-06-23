@@ -53,7 +53,7 @@ SE.SD.iid.xts = function(x){
 
 #' Standard Error of SD for iid data
 #'
-#' @param data vector of data
+#' @param data vector of inputs
 #'
 #' @return SE of SD
 #' @export

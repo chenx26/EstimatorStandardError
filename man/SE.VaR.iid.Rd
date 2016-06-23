@@ -11,6 +11,8 @@ SE.VaR.iid(data, alpha = 0.05)
 \arguments{
 \item{data}{The vector of data}
 
+\item{alpha}{tail probability}
+
 \item{data}{vector of data}
 }
 \value{

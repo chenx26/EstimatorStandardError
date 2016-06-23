@@ -61,23 +61,7 @@
 #' @author Brian G. Peterson and Kris Boudt
 #' @seealso \code{\link{Return.clean}} \code{sd}
 ###keywords ts multivariate distribution models
-#' @examples
-#'
-#'     data(edhec)
-#'
-#'     # first do normal StdDev calc
-#'     StdDev(edhec)
-#'     # or the equivalent
-#'     StdDev(edhec, portfolio_method="single")
-#'
-#'     # now with outliers squished
-#'     StdDev(edhec, clean="boudt")
-#'
-#'     # add Component StdDev for the equal weighted portfolio
-#'     StdDev(edhec, clean="boudt", portfolio_method="component")
-#'
-#'
-#' @export
+
 StdDev.se=function(R , ..., clean=c("none","boudt","geltner"),  portfolio_method=c("single","component"), weights=NULL, mu=NULL, sigma=NULL, use="everything", method=c("pearson", "kendall", "spearman"),
                     se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor")){
 

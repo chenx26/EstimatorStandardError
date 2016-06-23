@@ -30,6 +30,7 @@ SE.ES = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor"
 #' The operation is performed column wise.
 #'
 #' @param x the xts object
+#' @param alpha tail probability
 #'
 #' @return standard error(s) of the xts object
 #' @export
@@ -53,7 +54,7 @@ SE.ES.iid.xts = function(x,alpha=0.05){
 
 #' Standard Error of ES for iid data
 #'
-#' @param data vector of data
+#' @param data vector of input
 #'
 #' @return SE of ES
 #' @export
@@ -74,6 +75,7 @@ SE.ES.iid = function(data,alpha=0.05){
 #'
 #' @param data vector of data
 #' @param ... parameters passed from upper calls
+#' @param alpha tail probability
 #'
 #' @return SE of ES
 #' @export

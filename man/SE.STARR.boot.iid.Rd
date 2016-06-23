@@ -4,7 +4,7 @@
 \alias{SE.STARR.boot.iid}
 \title{Compute standard error of STARR via bootstrapping for iid data}
 \usage{
-SE.STARR.boot.iid(data, ..., alpha = 0.05)
+SE.STARR.boot.iid(data, ..., alpha = 0.05, rf = 0)
 }
 \arguments{
 \item{data}{vector of data}

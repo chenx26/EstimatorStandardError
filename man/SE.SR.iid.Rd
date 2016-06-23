@@ -4,9 +4,9 @@
 \alias{SE.SR.iid}
 \title{Function to compute the asymptotic standard error of the sample sharpe ratio for the given IID data}
 \usage{
-SE.SR.iid(data)
+SE.SR.iid(data, rf = 0)
 
-SE.SR.iid(data)
+SE.SR.iid(data, rf = 0)
 }
 \arguments{
 \item{data}{The vector of data}

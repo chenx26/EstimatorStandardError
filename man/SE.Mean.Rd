@@ -25,6 +25,6 @@ Wrapper function to compute the standard error for mean estimator
 }
 \examples{
 data(edhec)
-SE.mean(edhec,se.method="IFiid")
+SE.Mean(edhec,se.method="IFiid")
 }
 

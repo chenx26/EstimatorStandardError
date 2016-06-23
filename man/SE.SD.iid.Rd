@@ -11,7 +11,7 @@ SE.SD.iid(data)
 \arguments{
 \item{data}{The vector of data}
 
-\item{data}{vector of data}
+\item{data}{vector of inputs}
 }
 \value{
 The asymptotic standard error of the sample standard deviation

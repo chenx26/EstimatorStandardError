@@ -4,9 +4,9 @@
 \alias{SE.STARR.iid}
 \title{Function to compute the asymptotic standard error of the sample STARR Ratio for the given IID data}
 \usage{
-SE.STARR.iid(data, alpha = 0.05)
+SE.STARR.iid(data, alpha = 0.05, rf = 0)
 
-SE.STARR.iid(data, alpha = 0.05)
+SE.STARR.iid(data, alpha = 0.05, rf = 0)
 }
 \arguments{
 \item{data}{The vector of data}

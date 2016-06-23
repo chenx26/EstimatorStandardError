@@ -9,7 +9,7 @@ SE.ES.iid(data, alpha = 0.05)
 SE.ES.iid(data, alpha = 0.05)
 }
 \arguments{
-\item{data}{vector of data}
+\item{data}{vector of input}
 
 \item{alpha}{The tail probability}
 

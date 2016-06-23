@@ -30,6 +30,7 @@ SE.VaR = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor
 #' The operation is performed column wise.
 #'
 #' @param x the xts object
+#' @param alpha tail probability
 #'
 #' @return standard error(s) of the xts object
 #' @export
@@ -54,6 +55,7 @@ SE.VaR.iid.xts = function(x,alpha=0.05){
 #' Standard Error of VaR for iid data
 #'
 #' @param data vector of data
+#' @param alpha tail probability
 #'
 #' @return SE of VaR
 #' @export
@@ -65,7 +67,7 @@ SE.VaR.iid = function(data,alpha=0.05){
   mu=mean(data)
   N=length(data)
   variance=var(data)
-  pdf.fit <- approxfun(density(ar1.data))
+  pdf.fit <- approxfun(density(data))
   V=(1-alpha)*alpha*variance/(pdf.fit(-VaR.hat))^2
   return(sqrt(V/N))
 }
@@ -74,6 +76,7 @@ SE.VaR.iid = function(data,alpha=0.05){
 #'
 #' @param data vector of data
 #' @param ... parameters passed from upper calls
+#' @param alpha tail probability
 #'
 #' @return SE of VaR
 #' @export

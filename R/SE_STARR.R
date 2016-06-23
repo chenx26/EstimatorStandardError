@@ -37,7 +37,7 @@ SE.STARR = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTc
 #' @examples
 #' data(edhec)
 #' SE.STARR.iid.xts(edhec)
-SE.STARR.iid.xts = function(x,alpha=0.05){
+SE.STARR.iid.xts = function(x,alpha=0.05, rf = 0){
   if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
     x <- as.numeric(x)
     #    if(na.rm) x <- na.omit(x)
@@ -60,7 +60,7 @@ SE.STARR.iid.xts = function(x,alpha=0.05){
 #'
 #' @examples
 #' SE.STARR.iid(rnorm(10))
-SE.STARR.iid = function(data,alpha=0.05){
+SE.STARR.iid = function(data,alpha=0.05, rf = 0){
   mu.hat=mean(data)
   sigma.hat=mean((data-mu.hat)^2)
   VaR.hat=-quantile(data,alpha)
@@ -86,7 +86,7 @@ SE.STARR.iid = function(data,alpha=0.05){
 #'
 #' @examples
 #' SE.STARR.boot.iid(rnorm(10))
-SE.STARR.boot.iid = function(data, ..., alpha = 0.05){
+SE.STARR.boot.iid = function(data, ..., alpha = 0.05, rf = 0){
   args=list(...)
   arg.names=names(args)
   boot.sim=100

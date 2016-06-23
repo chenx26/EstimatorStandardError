@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' data(edhec)
-#' SE.mean(edhec,se.method="IFiid")
+#' SE.Mean(edhec,se.method="IFiid")
 SE.Mean = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor")){
   se.method=se.method[1]
   res = switch(se.method,

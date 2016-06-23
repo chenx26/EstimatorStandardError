@@ -4,7 +4,7 @@
 \alias{SE.STARR.iid.xts}
 \title{Wrapper function to compute the standard error(s) of the STARR for an xts object}
 \usage{
-SE.STARR.iid.xts(x, alpha = 0.05)
+SE.STARR.iid.xts(x, alpha = 0.05, rf = 0)
 }
 \arguments{
 \item{x}{the xts object}

@@ -8,6 +8,8 @@ SE.ES.iid.xts(x, alpha = 0.05)
 }
 \arguments{
 \item{x}{the xts object}
+
+\item{alpha}{tail probability}
 }
 \value{
 standard error(s) of the xts object

@@ -37,9 +37,7 @@ SE.SoR = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor
 #' @examples
 #' data(edhec)
 #' SE.SoR.iid.xts(edhec)
-SE.SoR.iid.xts = function(x,...){
-  args=list(...)
-  rf=args[["rf"]]
+SE.SoR.iid.xts = function(x,...,rf=0){
   if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
     x <- as.numeric(x)
     #    if(na.rm) x <- na.omit(x)
@@ -86,7 +84,7 @@ SE.SoR.iid = function(data,rf=0){
 #'
 #' @examples
 #' SE.SoR.boot.iid(rnorm(10))
-SE.SoR.boot.iid = function(data, ...){
+SE.SoR.boot.iid = function(data, ..., rf = 0){
   args=list(...)
   arg.names=names(args)
   boot.sim=100

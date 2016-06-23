@@ -4,7 +4,7 @@
 \alias{SE.SoR.boot.iid}
 \title{Compute standard error of SoR via bootstrapping for iid data}
 \usage{
-SE.SoR.boot.iid(data, ...)
+SE.SoR.boot.iid(data, ..., rf = 0)
 }
 \arguments{
 \item{data}{vector of data}
