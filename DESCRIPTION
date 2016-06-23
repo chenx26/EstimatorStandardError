@@ -10,5 +10,5 @@ LazyData: TRUE
 Suggests:
     testthat
 Depends:
-    xts,zoo, TSA,coda,h2o,PerformanceAnalytics
+    xts,zoo,PerformanceAnalytics
 RoxygenNote: 5.0.1
