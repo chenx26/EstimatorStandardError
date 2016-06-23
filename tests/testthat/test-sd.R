@@ -7,5 +7,5 @@ context("Test Computing Standard Deviation")
 #           expect_equal(hello2("abc"),"Greetings, abc")})
 
 test_that("The standard deviation of constant time series is zero",
-          expect_eual(sd(rep(1,5)),0))
+          expect_equal(sd(rep(1,5)),0))
 
