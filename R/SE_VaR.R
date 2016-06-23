@@ -80,7 +80,7 @@ SE.VaR.iid = function(data,alpha=0.05){
 #'
 #' @examples
 #' SE.VaR.boot.iid(rnorm(10))
-SE.VaR.boot.iid = function(data, ...){
+SE.VaR.boot.iid = function(data, ..., alpha = 0.05){
   args=list(...)
   arg.names=names(args)
   boot.sim=100

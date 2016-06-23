@@ -80,7 +80,7 @@ SE.ES.iid = function(data,alpha=0.05){
 #'
 #' @examples
 #' SE.ES.boot.iid(rnorm(10))
-SE.ES.boot.iid = function(data, ...){
+SE.ES.boot.iid = function(data, ...,alpha=0.05){
   args=list(...)
   arg.names=names(args)
   boot.sim=100

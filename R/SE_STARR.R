@@ -86,7 +86,7 @@ SE.STARR.iid = function(data,alpha=0.05){
 #'
 #' @examples
 #' SE.STARR.boot.iid(rnorm(10))
-SE.STARR.boot.iid = function(data, ...){
+SE.STARR.boot.iid = function(data, ..., alpha = 0.05){
   args=list(...)
   arg.names=names(args)
   boot.sim=100

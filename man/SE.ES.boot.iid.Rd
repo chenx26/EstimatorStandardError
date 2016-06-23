@@ -4,7 +4,7 @@
 \alias{SE.ES.boot.iid}
 \title{Compute standard error of ES via bootstrapping for iid data}
 \usage{
-SE.ES.boot.iid(data, ...)
+SE.ES.boot.iid(data, ..., alpha = 0.05)
 }
 \arguments{
 \item{data}{vector of data}

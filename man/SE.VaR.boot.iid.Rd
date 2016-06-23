@@ -4,7 +4,7 @@
 \alias{SE.VaR.boot.iid}
 \title{Compute standard error of VaR via bootstrapping for iid data}
 \usage{
-SE.VaR.boot.iid(data, ...)
+SE.VaR.boot.iid(data, ..., alpha = 0.05)
 }
 \arguments{
 \item{data}{vector of data}
