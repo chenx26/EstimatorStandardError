@@ -18,10 +18,11 @@ mu.IF=function(data){
 #'
 #' @param data
 #'
-#' @return
+#' @return IF of SD
 #' @export
 #'
 #' @examples
+#' SD.IF(rnorm(10))
 SD.IF=function(data){
   mu.hat=mean(data)
   sd.hat=sd(data)
