@@ -10,6 +10,10 @@ SE.STARR.boot.iid(data, ..., alpha = 0.05, rf = 0)
 \item{data}{vector of data}
 
 \item{...}{parameters passed from upper calls}
+
+\item{alpha}{tail probability}
+
+\item{rf}{risk free interest rate}
 }
 \value{
 SE of STARR

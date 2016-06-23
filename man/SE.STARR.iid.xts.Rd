@@ -8,6 +8,10 @@ SE.STARR.iid.xts(x, alpha = 0.05, rf = 0)
 }
 \arguments{
 \item{x}{the xts object}
+
+\item{alpha}{tail probability}
+
+\item{rf}{risk free interest rate}
 }
 \value{
 standard error(s) of the xts object

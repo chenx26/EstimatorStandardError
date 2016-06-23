@@ -30,6 +30,8 @@ SE.STARR = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTc
 #' The operation is performed column wise.
 #'
 #' @param x the xts object
+#' @param alpha tail probability
+#' @param rf risk free interest rate
 #'
 #' @return standard error(s) of the xts object
 #' @export
@@ -54,6 +56,8 @@ SE.STARR.iid.xts = function(x,alpha=0.05, rf = 0){
 #' Standard Error of STARR for iid data
 #'
 #' @param data vector of data
+#' @param alpha tail probability
+#' @param rf risk free interest rate
 #'
 #' @return SE of STARR
 #' @export
@@ -80,6 +84,8 @@ SE.STARR.iid = function(data,alpha=0.05, rf = 0){
 #'
 #' @param data vector of data
 #' @param ... parameters passed from upper calls
+#' @param alpha tail probability
+#' @param rf risk free interest rate
 #'
 #' @return SE of STARR
 #' @export

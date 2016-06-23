@@ -52,9 +52,11 @@ SE.ES.iid.xts = function(x,alpha=0.05){
 }
 
 
-#' Standard Error of ES for iid data
+
+#' Compute standard error of expected shortfall
 #'
-#' @param data vector of input
+#' @param data vector of data
+#' @param alpha tail probability
 #'
 #' @return SE of ES
 #' @export

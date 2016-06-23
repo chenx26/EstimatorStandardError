@@ -10,6 +10,8 @@ SE.VaR.boot.iid(data, ..., alpha = 0.05)
 \item{data}{vector of data}
 
 \item{...}{parameters passed from upper calls}
+
+\item{alpha}{tail probability}
 }
 \value{
 SE of VaR

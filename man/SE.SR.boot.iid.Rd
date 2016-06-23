@@ -10,6 +10,8 @@ SE.SR.boot.iid(data, ..., rf = 0)
 \item{data}{vector of data}
 
 \item{...}{parameters passed from upper calls}
+
+\item{rf}{risk free interest rate}
 }
 \value{
 SE of SR

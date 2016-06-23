@@ -8,6 +8,10 @@ SE.SoR.iid.xts(x, ..., rf = 0)
 }
 \arguments{
 \item{x}{the xts object}
+
+\item{...}{other parameters}
+
+\item{rf}{risk free interest rate}
 }
 \value{
 standard error(s) of the xts object

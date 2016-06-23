@@ -30,6 +30,8 @@ SE.SR = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor"
 #' The operation is performed column wise.
 #'
 #' @param x the xts object
+#' @param ... other parameters
+#' @param rf risk free interest rate
 #'
 #' @return standard error(s) of the xts object
 #' @export
@@ -54,6 +56,7 @@ SE.SR.iid.xts = function(x,...,rf=0){
 #' Standard Error of SR for iid data
 #'
 #' @param data vector of data
+#' @param rf risk free interest rate
 #'
 #' @return SE of SR
 #' @export
@@ -77,6 +80,7 @@ SE.SR.iid = function(data,rf=0){
 #'
 #' @param data vector of data
 #' @param ... parameters passed from upper calls
+#' @param rf risk free interest rate
 #'
 #' @return SE of SR
 #' @export
