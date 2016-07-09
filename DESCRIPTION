@@ -10,5 +10,5 @@ LazyData: TRUE
 Suggests:
     testthat
 Depends:
-    xts,zoo,PerformanceAnalytics
+    xts,zoo,PerformanceAnalytics, robustbase
 RoxygenNote: 5.0.1
