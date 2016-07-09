@@ -41,7 +41,7 @@ VaR=function(data,alpha=0.1){
 #'
 #' @examples
 #' ES(rnorm(10))
-ES=function(data,alpha=0.1){
+ES.hist=function(data,alpha=0.1){
   return(-mean(data[data<=quantile(data,alpha)]))
 }
 
