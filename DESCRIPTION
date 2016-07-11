@@ -7,8 +7,10 @@ Description: This package contains functions to compute the standard error of
     popular risk/performance measures using different methods.
 License: GPL-3
 LazyData: TRUE
+Imports:
+    sandwich
 Suggests:
     testthat
 Depends:
-    xts,zoo,PerformanceAnalytics, robustbase
+    xts,zoo,PerformanceAnalytics, robustbase, boot
 RoxygenNote: 5.0.1
