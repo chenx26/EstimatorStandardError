@@ -26,8 +26,8 @@ SR=function(data,rf=0){
 #' @export
 #'
 #' @examples
-#' VaR(rnorm(10))
-VaR=function(data,alpha=0.1){
+#' VaR.hist(rnorm(10))
+VaR.hist=function(data,alpha=0.1){
   return(-quantile(data,alpha))
 }
 
