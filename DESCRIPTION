@@ -12,5 +12,5 @@ Imports:
 Suggests:
     testthat
 Depends:
-    xts,zoo,PerformanceAnalytics, robustbase, boot
+    xts,zoo,PerformanceAnalytics, robustbase, boot, h2o
 RoxygenNote: 5.0.1
