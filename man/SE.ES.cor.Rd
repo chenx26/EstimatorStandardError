@@ -25,9 +25,4 @@ the SE of the ES estimtor for the data
 Compute the standard error of ES estimator for correlated data vector using
 GLM-EN method
 }
-\examples{
-h2o.init()
-SE.ES.cor(rnorm(500))
-h2o.shutdown(prompt=FALSE)
-}
 

@@ -18,10 +18,4 @@ standard error(s) of the xts object
 \description{
 The operation is performed column wise.
 }
-\examples{
-data(edhec)
-h2o.init()
-SE.ES.cor.xts(edhec)
-h2o.shutdown(prompt=FALSE)
-}
 

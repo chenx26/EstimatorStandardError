@@ -83,12 +83,7 @@ SE.ES.iid = function(data,alpha=0.05){
 #'
 #' @return standard error(s) of the xts object
 #' @export
-#'
-#' @examples
-#' data(edhec)
-#' h2o.init()
-#' SE.ES.cor.xts(edhec)
-#' h2o.shutdown(prompt=FALSE)
+
 SE.ES.cor.xts = function(x,alpha=0.05){
   if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
     x <- as.numeric(x)
@@ -113,11 +108,7 @@ SE.ES.cor.xts = function(x,alpha=0.05){
 #'
 #' @return the SE of the ES estimtor for the data
 #' @export
-#'
-#' @examples
-#' h2o.init()
-#' SE.ES.cor(rnorm(500))
-#' h2o.shutdown(prompt=FALSE)
+
 SE.ES.cor = function(x, d = 5, alpha.lasso = 0.5, keep = 1, alpha = 0.05){
   N=length(x)
   data.IF = ES.IF(x, alpha = alpha)
