@@ -107,6 +107,14 @@ decomposition is possible in a financially meaningful way.
     ES.SE(edhec, p=.95, method="historical",se.method = "IFcor")
     h2o.shutdown(prompt=FALSE)
 
+    # Now using iid bootstrapping
+    ES.SE(edhec, p=.95, method="historical",se.method = "BOOTiid")
+
+
+    # and with tsboot
+
+    ES.SE(edhec, p=.95, method="historical",se.method = "BOOTcor")
+
     # now use Gaussian
     ES.SE(edhec, p=.95, method="gaussian")
 

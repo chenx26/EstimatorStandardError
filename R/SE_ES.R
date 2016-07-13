@@ -131,7 +131,7 @@ SE.ES.cor = function(x, d = 5, alpha.lasso = 0.5, keep = 1, alpha = 0.05){
 #'
 #' @examples
 #' data(edhec)
-#' SE.ES.iid.xts(edhec)
+#' SE.ES.boot.iid.xts(edhec)
 SE.ES.boot.iid.xts = function(x,...,alpha=0.05){
   if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
     x <- as.numeric(x)
@@ -172,11 +172,71 @@ SE.ES.boot.iid = function(data, ...,alpha=0.05){
     # each standard error is computed from boot.sim ESs
     for(sim.iter in 1:boot.sim){
       x=sample(data,N,replace = TRUE)
-      res.sd[sim.iter]=ES(x,alpha)
+      res.sd[sim.iter]=ES.hist(x,alpha)
     }
     res[run.iter]=sd(res.sd)
   }
   # return the ES of the boot.run standard errors
   return(mean(res))
 }
+
+#' Wrapper function to compute the standard error(s) of the ES for an xts object
+#' using time series bootstrapping
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#' @param alpha tail probability
+#' @param ... other parameters
+#'
+#' @return standard error(s) of the xts object
+#' @export
+#'
+#' @examples
+#' data(edhec)
+#' SE.ES.boot.cor.xts(edhec)
+SE.ES.boot.cor.xts = function(x,...,alpha=0.05){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.ES.boot.cor(x,...,alpha=alpha))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.ES.boot.cor,...=...,alpha=alpha))
+  }
+}
+
+#' Compute standard error of ES via bootstrapping for data (possibily serially correlated)
+#'
+#' @param data vector of data
+#' @param ... parameters passed from upper calls
+#' @param alpha tail probability
+#' @param segment.length the length of the fixed block for bootstrapping
+#'
+#' @return SE of ES
+#' @export
+#'
+#' @examples
+#' SE.ES.boot.cor(rnorm(100), alpha=0.1)
+SE.ES.boot.cor = function(data, ...,alpha=0.05,segment.length=length(data)/5){
+  args=list(...)
+  arg.names=names(args)
+  boot.sim=100
+  boot.run=100
+  N=length(data)
+  # check if the parameters are specified by the function call
+  if(("boot.sim" %in% arg.names) & (!is.null(args["boot.sim"]))) boot.sim=args["boot.sim"]
+  if(("boot.run" %in% arg.names) & (!is.null(args["boot.run"]))) boot.run=args["boot.run"]
+  res=rep(0,boot.run)
+  # compute boot.run standard errors
+  for(run.iter in 1:boot.run){
+    boot.res=tsboot(data, ES.hist, R = boot.sim, sim = "fixed", l = segment.length, alpha = alpha)
+    res[run.iter]=sd(boot.res$t)
+  }
+  # return the ES of the boot.run standard errors
+  return(mean(res))
+}
+
 
