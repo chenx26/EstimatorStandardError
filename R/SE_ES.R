@@ -26,6 +26,7 @@ SE.ES = function(data,...,se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor"
 }
 
 #' Wrapper function to compute the standard error(s) of the ES for an xts object
+#' using IFiid formula
 #'
 #' The operation is performed column wise.
 #'
@@ -51,8 +52,6 @@ SE.ES.iid.xts = function(x,alpha=0.05){
   }
 }
 
-
-
 #' Compute standard error of expected shortfall
 #'
 #' @param data vector of data
@@ -64,13 +63,95 @@ SE.ES.iid.xts = function(x,alpha=0.05){
 #' @examples
 #' SE.ES.iid(rnorm(10))
 SE.ES.iid = function(data,alpha=0.05){
+  N=length(data)
   VaR.hat=-quantile(data,alpha)
   ES.hat=-mean(data[data<=-VaR.hat])
   V=mean(data^2*(data<=-VaR.hat))/alpha^2
   +(1/alpha-1)*VaR.hat^2
   +(2-2/alpha)*ES.hat*VaR.hat
   -ES.hat^2
-  return(sqrt(V))
+  return(sqrt(V/N))
+}
+
+#' Wrapper function to compute the standard error(s) of the ES for an xts object
+#' using GLM-EN method
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#' @param alpha tail probability
+#'
+#' @return standard error(s) of the xts object
+#' @export
+#'
+#' @examples
+#' data(edhec)
+#' h2o.init()
+#' SE.ES.cor.xts(edhec)
+#' h2o.shutdown(prompt=FALSE)
+SE.ES.cor.xts = function(x,alpha=0.05){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.ES.cor(x,alpha=alpha))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.ES.cor,alpha=alpha))
+  }
+}
+
+#' Compute the standard error of ES estimator for correlated data vector using
+#' GLM-EN method
+#'
+#' @param x the vector for the data
+#' @param d the maximum order of the polynomial
+#' @param alpha.lasso the weight for lasso vs elastic net
+#' @param keep the portion of peridograms to use to fit the polynomial
+#' @param alpha the tail probability of ES estimator
+#'
+#' @return the SE of the ES estimtor for the data
+#' @export
+#'
+#' @examples
+#' h2o.init()
+#' SE.ES.cor(rnorm(500))
+#' h2o.shutdown(prompt=FALSE)
+SE.ES.cor = function(x, d = 5, alpha.lasso = 0.5, keep = 1, alpha = 0.05){
+  N=length(x)
+  data.IF = ES.IF(x, alpha = alpha)
+  tmp = SE.GLM.LASSO(data.IF, d = d, alpha = alpha.lasso, keep = keep)
+  return(sqrt(tmp))
+}
+
+
+#' Wrapper function to compute the standard error(s) of the ES for an xts object
+#' using iid bootstrapping
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#' @param alpha tail probability
+#' @param ... other parameters
+#'
+#' @return standard error(s) of the xts object
+#' @export
+#'
+#' @examples
+#' data(edhec)
+#' SE.ES.iid.xts(edhec)
+SE.ES.boot.iid.xts = function(x,...,alpha=0.05){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.ES.boot.iid(x,...,alpha=alpha))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.ES.boot.iid,...=...,alpha=alpha))
+  }
 }
 
 #' Compute standard error of ES via bootstrapping for iid data

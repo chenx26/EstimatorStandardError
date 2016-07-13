@@ -50,7 +50,8 @@ m4 is the cokurtosis matrix of the return series, default NULL, see Details}
 
 \item{se.method}{a character string indicating which method should be used to compute
 the standard error of the estimated standard deviation. One of \code{"none"} (default),
-\code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}}
+\code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
+only when \code{method="historical"} and \code{portfolio_method="single"}.}
 
 \item{\dots}{any other passthru parameters}
 }
@@ -58,6 +59,8 @@ the standard error of the estimated standard deviation. One of \code{"none"} (de
 Calculates Expected Shortfall(ES) (also known as) Conditional Value at
 Risk(CVaR) or Expected Tail Loss (ETL) for univariate, component,
 and marginal cases using a variety of analytical methods.
+The standard error of the estimates can also be computed by supplying the
+\code{se.method} parameter.
 }
 \note{
 The option to \code{invert} the ES measure should appease both
@@ -98,6 +101,11 @@ decomposition is possible in a financially meaningful way.
 
     # first do normal ES calc
     ES.SE(edhec, p=.95, method="historical",se.method = "IFiid")
+
+    # Now do historical ES with correlated data
+    h2o.init()
+    ES.SE(edhec, p=.95, method="historical",se.method = "IFcor")
+    h2o.shutdown(prompt=FALSE)
 
     # now use Gaussian
     ES.SE(edhec, p=.95, method="gaussian")

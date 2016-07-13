@@ -8,6 +8,8 @@
 #' Calculates Expected Shortfall(ES) (also known as) Conditional Value at
 #' Risk(CVaR) or Expected Tail Loss (ETL) for univariate, component,
 #' and marginal cases using a variety of analytical methods.
+#' The standard error of the estimates can also be computed by supplying the
+#' \code{se.method} parameter.
 #'
 #'
 #' @export
@@ -37,7 +39,8 @@
 #' @param \dots any other passthru parameters
 #' @param se.method a character string indicating which method should be used to compute
 #' the standard error of the estimated standard deviation. One of \code{"none"} (default),
-#' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}
+#' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
+#' only when \code{method="historical"} and \code{portfolio_method="single"}.
 #' @note The option to \code{invert} the ES measure should appease both
 #' academics and practitioners.  The mathematical definition of ES as the
 #' negative value of extreme losses will (usually) produce a positive number.
@@ -101,6 +104,11 @@
 #'     # first do normal ES calc
 #'     ES.SE(edhec, p=.95, method="historical",se.method = "IFiid")
 #'
+#'     # Now do historical ES with correlated data
+#'     h2o.init()
+#'     ES.SE(edhec, p=.95, method="historical",se.method = "IFcor")
+#'     h2o.shutdown(prompt=FALSE)
+#'
 #'     # now use Gaussian
 #'     ES.SE(edhec, p=.95, method="gaussian")
 #'
@@ -140,6 +148,7 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
           portfolio_method=portfolio_method,
           weights=weights, mu=mu, sigma=sigma, m3=m3, m4=m4,
           invert=invert, operational=operational)
+
   se.method=se.method[1]
   SE=NULL
   method = method[1]
@@ -182,7 +191,11 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
 
     SE=EstimatorSE(R, estimator.fun = "ES", se.method = se.method, alpha=1-p)
   }
+  if(se.method == "none"){
+    return(myES)
+  } else {
   return(list(ES = myES, SE = SE))
+  }
 } # end ES.SE wrapper function
 
 ###############################################################################
