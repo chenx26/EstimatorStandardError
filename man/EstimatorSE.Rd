@@ -32,4 +32,7 @@ Wrapper function for computing the standard error of risk/performance measure es
 data(edhec)
 EstimatorSE(edhec,estimator.fun="SD",se.method="IFiid")
 }
+\author{
+Xin Chen
+}
 

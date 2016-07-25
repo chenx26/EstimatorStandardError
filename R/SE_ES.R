@@ -8,6 +8,7 @@
 #' is implemented.
 #'
 #' @return SE of ES
+#' @author Xin Chen
 #' @export
 #'
 #' @examples

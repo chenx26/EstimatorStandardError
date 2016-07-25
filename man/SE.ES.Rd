@@ -27,4 +27,7 @@ Wrapper function to compute the standard error for ES estimator
 data(edhec)
 SE.ES(edhec,se.method="IFiid")
 }
+\author{
+Xin Chen
+}
 

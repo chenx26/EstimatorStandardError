@@ -20,4 +20,7 @@ Compute the periodogram as defined in H&W 1981
 \examples{
 myperiodogram(rnorm(10))
 }
+\author{
+Xin Chen
+}
 

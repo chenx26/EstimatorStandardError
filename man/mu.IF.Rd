@@ -18,4 +18,7 @@ Influence Function of Mean
 \examples{
 mu.IF(rnorm(10))
 }
+\author{
+Xin Chen
+}
 

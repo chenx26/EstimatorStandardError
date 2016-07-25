@@ -12,6 +12,7 @@
 #'
 #' @return the standard error of the specified risk/performance measure using the specified method
 #' @export
+#' @author Xin Chen
 #'
 #' @examples
 #' data(edhec)

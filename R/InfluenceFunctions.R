@@ -6,6 +6,7 @@
 #'
 #' @return IF of Mean
 #' @export
+#' @author Xin Chen
 #'
 #' @examples
 #' mu.IF(rnorm(10))

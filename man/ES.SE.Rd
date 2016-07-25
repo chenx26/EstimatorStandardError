@@ -133,7 +133,7 @@ decomposition is possible in a financially meaningful way.
     ES.SE(edhec, clean="boudt", portfolio_method="component")
 }
 \author{
-Brian G. Peterson and Kris Boudt
+Brian G. Peterson, Kris Boudt and Xin Chen
 }
 \references{
 Boudt, Kris, Peterson, Brian, and Christophe Croux. 2008.

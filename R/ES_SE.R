@@ -70,7 +70,7 @@
 #' decompose total portfolio ES into the risk contributions of each of the
 #' portfolio components. For the above mentioned ES estimators, such a
 #' decomposition is possible in a financially meaningful way.
-#' @author Brian G. Peterson and Kris Boudt
+#' @author Brian G. Peterson, Kris Boudt and Xin Chen
 #' @seealso \code{\link{VaR}} \cr \code{\link{SharpeRatio.modified}} \cr
 #' \code{\link{chart.VaRSensitivity}} \cr \code{\link{Return.clean}}
 #'

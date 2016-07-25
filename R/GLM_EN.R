@@ -2,6 +2,7 @@
 #'
 #' @param data Vector of data
 #' @param max.freq Maximum frequency to be computed
+#' @author Xin Chen
 #'
 #' @return list of frequencies and corresponding periodograms
 #' @export
