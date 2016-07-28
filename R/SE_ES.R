@@ -64,13 +64,10 @@ SE.ES.iid.xts = function(x,alpha=0.05){
 #' @examples
 #' SE.ES.iid(rnorm(10))
 SE.ES.iid = function(data,alpha=0.05){
-  N=length(data)
-  VaR.hat=-quantile(data,alpha)
-  ES.hat=-mean(data[data<=-VaR.hat])
-  V=mean(data^2*(data<=-VaR.hat))/alpha^2
-  +(1/alpha-1)*VaR.hat^2
-  +(2-2/alpha)*ES.hat*VaR.hat
-  -ES.hat^2
+  N = length(data)
+  VaR.hat = -quantile(data, alpha)
+  ES.hat = -mean(data[data <= -VaR.hat])
+  V = mean(data^2 * (data <= -VaR.hat))/alpha^2+(1/alpha - 1) * VaR.hat^2+(2 - 2/alpha) * ES.hat * VaR.hat-ES.hat^2
   return(sqrt(V/N))
 }
 
