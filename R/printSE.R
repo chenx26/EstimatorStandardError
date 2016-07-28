@@ -12,15 +12,16 @@
 #' printSE(res, round.digit = 4)
 printSE = function(res , round.digit = 3){
   N = length(res)
-  if(N != 2) {
-    cat("the results do not contain standard errors!\n")
-    return()
-  }
+  # if(N != 2) {
+  #   cat("the results do not contain standard errors!\n")
+  #   return()
+  # }
   list.names = names(res)
-  res.df = data.frame(as.vector(res[[1]]), as.vector(res[[2]]))
+  res.df = data.frame(sapply(res,as.vector))
   colnames(res.df) = list.names
   rownames(res.df) = colnames(res[[1]])
   res.df = round(res.df, digits = round.digit)
-  res.df[2] = paste("(",res.df[,2],")")
-  print(res.df)
+  # res.df[2] = paste("(",res.df[,2],")",sep="")
+  res.df[,-1] = apply(res.df[,-1],2,function(x) paste("(",x,")",sep=""))
+  return(res.df)
 }

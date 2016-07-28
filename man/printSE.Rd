@@ -20,6 +20,6 @@ Formatted output of the results from xxx.SE() functions
 \examples{
 data(edhec)
 res = ES.SE(edhec, p=.95, method="historical",se.method = "IFiid")
-printSE(res)
+printSE(res, round.digit = 4)
 }
 
