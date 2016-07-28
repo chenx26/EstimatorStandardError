@@ -45,7 +45,7 @@ myperiodogram=function(data,max.freq=0.5){
 #' SE.GLM.LASSO(rnorm(10))
 #' h2o.shutdown(prompt=FALSE)
 SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
-
+  h2o.no_progress()
   N=length(data)
   # Step 1: compute the periodograms
   my.periodogram=myperiodogram(data)

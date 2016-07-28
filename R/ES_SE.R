@@ -117,6 +117,9 @@
 #'
 #'     ES.SE(edhec, p=.95, method="historical",se.method = "BOOTcor")
 #'
+#'     # next use more than one method at the same time
+#'     (res=ES.SE(edhec, p=.95, method="historical",se.method = c("IFiid","BOOTiid","BOOTcor")))
+#'
 #'     # now use Gaussian
 #'     ES.SE(edhec, p=.95, method="gaussian")
 #'
@@ -140,7 +143,7 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
                                portfolio_method=c("single","component"),
                                weights=NULL, mu=NULL, sigma=NULL, m3=NULL, m4=NULL,
                                invert=TRUE, operational=TRUE,
-                               se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor"))
+                               se.method="none")
 { # @author Brian G. Peterson and Xin Chen
 
   # Descripion:
@@ -157,8 +160,8 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
           weights=weights, mu=mu, sigma=sigma, m3=m3, m4=m4,
           invert=invert, operational=operational)
 
-  se.method=se.method[1]
-  SE=NULL
+  # se.method=se.method[1]
+  # SE=NULL
   method = method[1]
   clean = clean[1]
   portfolio_method = portfolio_method[1]
@@ -196,13 +199,17 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
         stop("number of items in weights not equal to number of items in the mean vector")
       }
     }
+    if(se.method == "none" & length(se.method)==1){
+      return(myES)
+    } else {
+      res=list(ES=myES)
+      # for each of the method specified in se.method, compute the standard error
+      for(mymethod in se.method){
+        res[[mymethod]]=EstimatorSE(R, estimator.fun = "ES", se.method = mymethod, alpha=1-p)
+      }
+      return(res)
+    }
 
-    SE=EstimatorSE(R, estimator.fun = "ES", se.method = se.method, alpha=1-p)
-  }
-  if(se.method == "none"){
-    return(myES)
-  } else {
-  return(list(ES = myES, SE = SE))
   }
 } # end ES.SE wrapper function
 

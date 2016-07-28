@@ -11,8 +11,7 @@ ETL.SE(R = NULL, p = 0.95, ..., method = c("modified", "gaussian",
   "historical"), clean = c("none", "boudt", "geltner"),
   portfolio_method = c("single", "component"), weights = NULL, mu = NULL,
   sigma = NULL, m3 = NULL, m4 = NULL, invert = TRUE,
-  operational = TRUE, se.method = c("none", "IFiid", "IFcor", "BOOTiid",
-  "BOOTcor"))
+  operational = TRUE, se.method = "none")
 }
 \arguments{
 \item{R}{a vector, matrix, data frame, timeSeries or zoo object of asset
@@ -114,6 +113,9 @@ decomposition is possible in a financially meaningful way.
     # and with tsboot
 
     ES.SE(edhec, p=.95, method="historical",se.method = "BOOTcor")
+
+    # next use more than one method at the same time
+    (res=ES.SE(edhec, p=.95, method="historical",se.method = c("IFiid","BOOTiid","BOOTcor")))
 
     # now use Gaussian
     ES.SE(edhec, p=.95, method="gaussian")
