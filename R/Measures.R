@@ -92,6 +92,6 @@ SoR = function(data, rf = 0){
 #' STARR(rnorm(10))
 STARR = function(data, alpha = 0.05, rf = 0){
   mu.hat=mean(data)
-  return(mu.hat/ES(data, alpha = alpha))
+  return((mu.hat - rf)/ES(data, alpha = alpha))
 }
 
