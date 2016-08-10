@@ -65,6 +65,74 @@ SE.SD.iid = function(data){
   return(sqrt(var(data)/2/sd(data)/N))
 }
 
+#' Wrapper function to compute the standard error(s) of the SD for an xts object
+#' using GLM-EN method
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#'
+#' @return standard error(s) of the xts object
+#' @export
+
+SE.SD.cor.xts = function(x){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.SD.cor(x))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.SD.cor))
+  }
+}
+
+#' Compute the standard error of SD estimator for correlated data vector using
+#' GLM-EN method
+#'
+#' @param x the vector for the data
+#' @param d the maximum order of the polynomial
+#' @param alpha.lasso the weight for lasso vs elastic net
+#' @param keep the portion of peridograms to use to fit the polynomial
+#'
+#' @return the SE of the SD estimtor for the data
+#' @export
+
+SE.SD.cor = function(x, d = 5, alpha.lasso = 0.5, keep = 1){
+  N=length(x)
+  data.IF = SD.IF(x)
+  tmp = SE.GLM.LASSO(data.IF, d = d, alpha = alpha.lasso, keep = keep)
+  return(sqrt(tmp))
+}
+
+#' Wrapper function to compute the standard error(s) of the SD for an xts object
+#' using iid bootstrapping
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#' @param ... other parameters
+#'
+#' @return standard error(s) of the xts object
+#' @export
+#'
+#' @examples
+#' data(edhec)
+#' SE.SD.boot.iid.xts(edhec)
+SE.SD.boot.iid.xts = function(x,...){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.SD.boot.iid(x,...))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.SD.boot.iid,...=...))
+  }
+}
+
 #' Compute standard error of SD via bootstrapping for iid data
 #'
 #' @param data vector of data
@@ -99,3 +167,59 @@ SE.SD.boot.iid = function(data, ...){
   return(mean(res))
 }
 
+#' Wrapper function to compute the standard error(s) of the SD for an xts object
+#' using tsboot
+#'
+#' The operation is performed column wise.
+#'
+#' @param x the xts object
+#' @param ... other parameters
+#'
+#' @return standard error(s) of the xts object
+#' @export
+#'
+#' @examples
+#' data(edhec)
+#' SE.SD.boot.cor.xts(edhec)
+SE.SD.boot.cor.xts = function(x,...){
+  if (is.vector(x) || is.null(ncol(x)) || ncol(x) == 1) {
+    x <- as.numeric(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(SE.SD.boot.cor(x,...))
+  }
+  else {
+    x <- coredata(x)
+    #    if(na.rm) x <- na.omit(x)
+    return(apply(x, 2, SE.SD.boot.cor,...=...))
+  }
+}
+
+#' Compute standard error of SD via bootstrapping for data (possibily serially correlated)
+#'
+#' @param data vector of data
+#' @param ... parameters passed from upper calls
+#' @param segment.length the length of the fixed block for bootstrapping
+#'
+#' @return SE of SD
+#' @export
+#'
+#' @examples
+#' SE.SD.boot.cor(rnorm(100))
+SE.SD.boot.cor = function(data, ...,segment.length=length(data)/5){
+  args=list(...)
+  arg.names=names(args)
+  boot.sim=100
+  boot.run=100
+  N=length(data)
+  # check if the parameters are specified by the function call
+  if(("boot.sim" %in% arg.names) & (!is.null(args["boot.sim"]))) boot.sim=args["boot.sim"]
+  if(("boot.run" %in% arg.names) & (!is.null(args["boot.run"]))) boot.run=args["boot.run"]
+  res=rep(0,boot.run)
+  # compute boot.run standard errors
+  for(run.iter in 1:boot.run){
+    boot.res=tsboot(data, sd, R = boot.sim, sim = "fixed", l = segment.length)
+    res[run.iter]=sd(boot.res$t)
+  }
+  # return the ES of the boot.run standard errors
+  return(mean(res))
+}

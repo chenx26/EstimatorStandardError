@@ -8,7 +8,7 @@ calculates component contribution to standard deviation of a portfolio}
 StdDev.SE(R, ..., clean = c("none", "boudt", "geltner"),
   portfolio_method = c("single", "component"), weights = NULL, mu = NULL,
   sigma = NULL, use = "everything", method = c("pearson", "kendall",
-  "spearman"), se.method = c("none", "IFiid", "IFcor", "BOOTiid", "BOOTcor"))
+  "spearman"), se.method = "none")
 }
 \arguments{
 \item{R}{a vector, matrix, data frame, timeSeries or zoo object of asset
@@ -41,7 +41,8 @@ abbreviation of) one of the strings \code{"everything"}, \code{"all.obs"},
 
 \item{se.method}{a character string indicating which method should be used to compute
 the standard error of the estimated standard deviation. One of \code{"none"} (default),
-\code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}}
+\code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
+only when \code{method="historical"} and \code{portfolio_method="single"}.}
 
 \item{\dots}{any other passthru parameters}
 }
@@ -72,8 +73,44 @@ standard deviation of the portfolio, and increasing its weight in relation
 to the rest of the portfolio would decrease the overall portfolio standard
 deviation.
 }
+\examples{
+
+    data(edhec)
+
+    # first do normal StdDev calc
+    StdDev.SE(edhec)
+    # or the equivalent
+    StdDev.SE(edhec, portfolio_method="single")
+
+    # now with outliers squished
+    StdDev.SE(edhec, clean="boudt")
+
+    # add Component StdDev for the equal weighted portfolio
+    StdDev.SE(edhec, clean="boudt", portfolio_method="component")
+
+    # first do normal StdDev calc
+    StdDev.SE(edhec, se.method = "IFiid")
+
+    # Now do historical StdDev with correlated data
+    h2o.init()
+    StdDev.SE(edhec, se.method = "IFcor")
+    h2o.shutdown(prompt=FALSE)
+
+    # Now using iid bootstrapping
+    StdDev.SE(edhec, se.method = "BOOTiid")
+
+
+    # and with tsboot
+
+    StdDev.SE(edhec, se.method = "BOOTcor")
+
+    # next use more than one method at the same time
+    (res=StdDev.SE(edhec, se.method = c("IFiid","BOOTiid","BOOTcor")))
+
+
+}
 \author{
-Brian G. Peterson, Kris Boudt and Xin Chen
+Brian G. Peterson and Kris Boudt
 }
 \seealso{
 \code{\link{Return.clean}} \code{sd}

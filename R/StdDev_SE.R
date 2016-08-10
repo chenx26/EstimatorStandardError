@@ -44,6 +44,10 @@
 #' @param weights portfolio weighting vector, default NULL, see Details
 #' @param mu If univariate, mu is the mean of the series. Otherwise mu is the
 #' vector of means of the return series , default NULL, , see Details
+#' @param se.method a character string indicating which method should be used to compute
+#' the standard error of the estimated standard deviation. One of \code{"none"} (default),
+#' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
+#' only when \code{method="historical"} and \code{portfolio_method="single"}.
 #' @param sigma If univariate, sigma is the variance of the series. Otherwise
 #' sigma is the covariance matrix of the return series , default NULL, see
 #' Details
@@ -55,27 +59,55 @@
 #' @param method a character string indicating which correlation coefficient
 #' (or covariance) is to be computed.  One of \code{"pearson"} (default),
 #' \code{"kendall"}, or \code{"spearman"}, can be abbreviated.
-#' @param se.method a character string indicating which method should be used to compute
-#' the standard error of the estimated standard deviation. One of \code{"none"} (default),
-#' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}
-#' @author Brian G. Peterson, Kris Boudt and Xin Chen
+#' @author Brian G. Peterson and Kris Boudt
 #' @seealso \code{\link{Return.clean}} \code{sd}
 ###keywords ts multivariate distribution models
-
-StdDev.SE=function(R , ..., clean=c("none","boudt","geltner"),  portfolio_method=c("single","component"), weights=NULL, mu=NULL, sigma=NULL, use="everything", method=c("pearson", "kendall", "spearman"),
-                    se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor")){
-    # @author Brian G. Peterson and Xin Chen
-
-    # Descripion:
-
-    # wrapper for univariate and multivariate standard deviation functions.
-    # added option to compute standard errors for uni
-
-    # Setup:
+#' @examples
+#'
+#'     data(edhec)
+#'
+#'     # first do normal StdDev calc
+#'     StdDev.SE(edhec)
+#'     # or the equivalent
+#'     StdDev.SE(edhec, portfolio_method="single")
+#'
+#'     # now with outliers squished
+#'     StdDev.SE(edhec, clean="boudt")
+#'
+#'     # add Component StdDev for the equal weighted portfolio
+#'     StdDev.SE(edhec, clean="boudt", portfolio_method="component")
+#'
+#'     # first do normal StdDev calc
+#'     StdDev.SE(edhec, se.method = "IFiid")
+#'
+#'     # Now do historical StdDev with correlated data
+#'     h2o.init()
+#'     StdDev.SE(edhec, se.method = "IFcor")
+#'     h2o.shutdown(prompt=FALSE)
+#'
+#'     # Now using iid bootstrapping
+#'     StdDev.SE(edhec, se.method = "BOOTiid")
+#'
+#'
+#'     # and with tsboot
+#'
+#'     StdDev.SE(edhec, se.method = "BOOTcor")
+#'
+#'     # next use more than one method at the same time
+#'     (res=StdDev.SE(edhec, se.method = c("IFiid","BOOTiid","BOOTcor")))
+#'
+#'
+#' @export
+StdDev.SE <- function (R , ..., clean=c("none","boudt","geltner"),
+                       portfolio_method=c("single","component"), weights=NULL, mu=NULL, sigma=NULL,
+                       use="everything", method=c("pearson", "kendall", "spearman"),
+                       se.method="none"){
+  myStdDev = StdDev(R , ..., clean=c("none","boudt","geltner"),
+                    portfolio_method=c("single","component"), weights=NULL, mu=NULL, sigma=NULL,
+                    use="everything", method=c("pearson", "kendall", "spearman"))
+  if(portfolio_method == "single" & is.null(weights)){
     portfolio_method = portfolio_method[1]
     clean = clean[1]
-    se.method=se.method[1]
-    SE=NULL
     R <- checkData(R, method="xts", ...)
     columns=colnames(R)
 
@@ -103,40 +135,15 @@ StdDev.SE=function(R , ..., clean=c("none","boudt","geltner"),  portfolio_method
     if(clean!="none"){
       R = as.matrix(Return.clean(R, method=clean))
     }
-
-    switch(portfolio_method,
-           single = {
-             if (is.null(weights)) {
-               tsd=t(xts:::sd.xts(R, na.rm=TRUE))
-               rownames(tsd)<-"StdDev"
-               if(se.method=="IFiid"){
-                 SE=EstimatorSE(R,estimator.fun="SD",se.method="IFiid")
-               }
-               if(se.method=="IFcor"){
-               }
-               if(se.method=="BOOTiid"){
-                 SE=EstimatorSE(R,estimator.fun="SD",se.method="BOOTiid")
-               }
-               if(se.method=="BOOTcor"){
-               }
-             } else {
-               #do the multivariate calc with weights
-               if(!hasArg(sigma)|is.null(sigma)) sigma=cov(R, use=use, method=method[1])
-               tsd<-StdDev.MM(w=weights,sigma=sigma)
-             }
-             return(list(sd=tsd,se=SE))
-           }, # end single portfolio switch
-           component = {
-             # @TODO: need to add another loop here for subsetting, I think, when weights is a timeseries
-             #if (mu=NULL or sigma=NULL) {
-             #     pfolioret = Return.portfolio(R, weights, wealth.index = FALSE, contribution=FALSE, method = c("simple"))
-             #}
-             # for now, use as.vector
-             weights=as.vector(weights)
-             names(weights)<-colnames(R)
-             if (is.null(sigma)) { sigma = cov(R, use=use, method=method[1]) }
-
-             return(Portsd(w=weights,sigma))
-           } # end component portfolio switch
-    )
+    if(se.method == "none" & length(se.method)==1){
+      return(myStdDev)
+    } else {
+      res=list(SD=myStdDev)
+      # for each of the method specified in se.method, compute the standard error
+      for(mymethod in se.method){
+        res[[mymethod]]=EstimatorSE(R, estimator.fun = "SD", se.method = mymethod)
+      }
+      return(res)
+    }
+  }
 }
