@@ -98,23 +98,7 @@ decomposition is possible in a financially meaningful way.
 
     data(edhec)
 
-    # first do normal ES calc
-    ES.SE(edhec, p=.95, method="historical",se.method = "IFiid")
-
-    # Now do historical ES with correlated data
-    h2o.init()
-    ES.SE(edhec, p=.95, method="historical",se.method = "IFcor")
-    h2o.shutdown(prompt=FALSE)
-
-    # Now using iid bootstrapping
-    ES.SE(edhec, p=.95, method="historical",se.method = "BOOTiid")
-
-
-    # and with tsboot
-
-    ES.SE(edhec, p=.95, method="historical",se.method = "BOOTcor")
-
-    # next use more than one method at the same time
+    # use more than one method at the same time
     h2o.init()
     (res=ES.SE(edhec, p=.95, method="historical",
     se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
