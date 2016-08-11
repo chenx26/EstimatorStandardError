@@ -4,10 +4,12 @@
 \alias{mu.IF}
 \title{Influence Function of Mean}
 \usage{
-mu.IF(data)
+mu.IF(data, ...)
 }
 \arguments{
 \item{data}{Vector of the data}
+
+\item{...}{other parameters}
 }
 \value{
 IF of Mean

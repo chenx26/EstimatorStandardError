@@ -31,6 +31,12 @@ Wrapper function for computing the standard error of risk/performance measure es
 \examples{
 data(edhec)
 EstimatorSE(edhec,estimator.fun="SD",se.method="IFiid")
+h2o.init()
+EstimatorSE(edhec,estimator.fun="ES",se.method="IFcor")
+h2o.shutdown(prompt=FALSE)
+EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTiid", nsim=100)
+EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTcor", nsim=100,
+sim = "fixed", l = round(nrow(edhec)/5))
 }
 \author{
 Xin Chen

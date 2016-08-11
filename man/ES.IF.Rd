@@ -4,10 +4,12 @@
 \alias{ES.IF}
 \title{Influence Function of Expected Shortfall (ES)}
 \usage{
-ES.IF(data, alpha = 0.1)
+ES.IF(data, ..., alpha = 0.1)
 }
 \arguments{
 \item{data}{Vector of the data}
+
+\item{...}{other parameters}
 
 \item{alpha}{Tail Probability}
 }

@@ -89,6 +89,6 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   p0.hat=h2o.predict(my.glm.lasso,newx.h2o.df)[1,1]
 
 
-  # Step 4: return the estimated variance
-  return(p0.hat/N)
+  # Step 4: return the estimated standard error
+  return(sqrt(p0.hat/N))
 }

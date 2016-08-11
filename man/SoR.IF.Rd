@@ -4,10 +4,12 @@
 \alias{SoR.IF}
 \title{Influence Function of Sortino Ratio with Mean Return Threshold}
 \usage{
-SoR.IF(data, rf = 0)
+SoR.IF(data, ..., rf = 0)
 }
 \arguments{
 \item{data}{Vector of data}
+
+\item{...}{other parameters}
 
 \item{rf}{Risk-Free interest rate}
 }

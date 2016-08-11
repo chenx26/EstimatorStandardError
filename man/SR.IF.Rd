@@ -4,10 +4,12 @@
 \alias{SR.IF}
 \title{Compute the Influence Function value of Sharpe Ratio}
 \usage{
-SR.IF(data, rf = 0)
+SR.IF(data, ..., rf = 0)
 }
 \arguments{
 \item{data}{vector of data}
+
+\item{...}{other parameters}
 
 \item{rf}{risk free interest rate}
 }
