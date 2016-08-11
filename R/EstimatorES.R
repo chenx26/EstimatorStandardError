@@ -149,14 +149,18 @@ SE.BOOT.iid = function(x, myfun, myfun.IF, ..., nsim = 100){
 #' @param nsim number of replicates
 #' @param ... other parameters
 #' @param myfun.IF not used
+#' @param sim the type of simulation
+#' @param l the length of the fixed block
 #'
 #' @return standard error
 #' @export
 #'
 #' @examples
 #' SE.BOOT.cor(x = rnorm(100), myfun = mean, nsim = 100)
-SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 100){
-  res = tsboot(tseries = x, statistic = function(x,...) myfun(x,...), R = nsim, ...)
+SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 100,
+                       sim = "fixed", l = round(length(x)/5)){
+  res = tsboot(tseries = x, statistic = function(x,...) myfun(x,...), R = nsim,
+               sim = sim, l = l,...)
   return(sd(res$t))
 }
 

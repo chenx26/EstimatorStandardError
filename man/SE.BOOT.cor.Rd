@@ -4,7 +4,8 @@
 \alias{SE.BOOT.cor}
 \title{Compute the standard error of the measure by tsboot()}
 \usage{
-SE.BOOT.cor(x, myfun, myfun.IF, ..., nsim = 100)
+SE.BOOT.cor(x, myfun, myfun.IF, ..., nsim = 100, sim = "fixed",
+  l = round(length(x)/5))
 }
 \arguments{
 \item{x}{vector of data}
@@ -16,6 +17,10 @@ SE.BOOT.cor(x, myfun, myfun.IF, ..., nsim = 100)
 \item{...}{other parameters}
 
 \item{nsim}{number of replicates}
+
+\item{sim}{the type of simulation}
+
+\item{l}{the length of the fixed block}
 }
 \value{
 standard error

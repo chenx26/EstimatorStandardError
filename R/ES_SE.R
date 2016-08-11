@@ -118,7 +118,11 @@
 #'     ES.SE(edhec, p=.95, method="historical",se.method = "BOOTcor")
 #'
 #'     # next use more than one method at the same time
-#'     (res=ES.SE(edhec, p=.95, method="historical",se.method = c("IFiid","BOOTiid","BOOTcor")))
+#'     h2o.init()
+#'     (res=ES.SE(edhec, p=.95, method="historical",
+#'     se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
+#'     h2o.shutdown(prompt=FALSE)
+#'     printSE(res)
 #'
 #'     # now use Gaussian
 #'     ES.SE(edhec, p=.95, method="gaussian")
