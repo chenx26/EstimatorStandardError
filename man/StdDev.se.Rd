@@ -88,24 +88,11 @@ deviation.
     # add Component StdDev for the equal weighted portfolio
     StdDev.SE(edhec, clean="boudt", portfolio_method="component")
 
-    # first do normal StdDev calc
-    StdDev.SE(edhec, se.method = "IFiid")
-
-    # Now do historical StdDev with correlated data
-    h2o.init()
-    StdDev.SE(edhec, se.method = "IFcor")
-    h2o.shutdown(prompt=FALSE)
-
-    # Now using iid bootstrapping
-    StdDev.SE(edhec, se.method = "BOOTiid")
-
-
-    # and with tsboot
-
-    StdDev.SE(edhec, se.method = "BOOTcor")
-
     # next use more than one method at the same time
-    (res=StdDev.SE(edhec, se.method = c("IFiid","BOOTiid","BOOTcor")))
+    h2o.init()
+    (res=StdDev.SE(edhec, se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
+    h2o.shutdown(prompt=FALSE)
+    printSE(res)
 
 
 }

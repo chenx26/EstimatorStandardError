@@ -197,7 +197,6 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
       }
       return(res)
     }
-
   }
 } # end ES.SE wrapper function
 

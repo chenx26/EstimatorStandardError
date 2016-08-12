@@ -148,7 +148,7 @@
 #' @export
 VaR.SE <-
   function (R=NULL , p=0.95, ..., method=c("modified","gaussian","historical", "kernel"), clean=c("none","boudt","geltner"),  portfolio_method=c("single","component","marginal"), weights=NULL, mu=NULL, sigma=NULL, m3=NULL, m4=NULL, invert=TRUE,
-            se.method=c("none","IFiid","IFcor","BOOTiid","BOOTcor"))
+            se.method="none")
   { # @author Brian G. Peterson and Xin Chen
 
     # Descripion:
@@ -159,15 +159,17 @@ VaR.SE <-
     #if(exists(modified)({if( modified == TRUE) { method="modified" }}
     #if(method == TRUE or is.null(method) ) { method="modified" }
 
-    VaR.estimate = VaR(R=R , p=p, ..., method=method,
+    myVaR = VaR(R=R , p=p, ..., method=method,
                        clean=clean,  portfolio_method=portfolio_method,
                        weights=weights, mu=mu, sigma=sigma, m3=m3, m4=m4, invert=invert)
 
-    se.method=se.method[1]
-    SE=NULL
+
     method = method[1]
     clean = clean[1]
     portfolio_method = portfolio_method[1]
+
+    ## when VaR is computed using single and historical, compute standard error
+
     if(portfolio_method == "single" & is.null(weights) & method == "historical"){
     if (is.null(weights) & portfolio_method != "single"){
       message("no weights passed in, assuming equal weighted portfolio")
@@ -202,9 +204,17 @@ VaR.SE <-
         stop("number of items in weights not equal to number of items in the mean vector")
       }
     }
-      SE = EstimatorSE(R, estimator.fun = "VaR", se.method = se.method, alpha = 1-p)
+    if(se.method == "none" & length(se.method)==1){
+        return(myVaR)
+      } else {
+        res=list(VaR=myVaR)
+        # for each of the method specified in se.method, compute the standard error
+        for(mymethod in se.method){
+          res[[mymethod]]=EstimatorSE(R, estimator.fun = "VaR", se.method = mymethod, alpha=1-p)
+        }
+        return(res)
+      }
     }
-    return(list(VaR = VaR.estimate, SE = SE))
   } # end VaR wrapper function
 
 ###############################################################################
