@@ -78,7 +78,18 @@ SoR = function(data, rf = 0){
   return(SoR.hat)
 }
 
-SoR.const = function(data, MAR){
+#' Compute sample Sortino Ratio with constant threshold
+#'
+#' @param data Vector of data
+#' @param ... other parameters
+#' @param MAR Constant Threshold
+#'
+#' @return IF of SoR
+#' @export
+#'
+#' @examples
+#' SoR.const.IF(rnorm(10),MAR = 0.1)
+SoR.const = function(data, ..., MAR = 0){
   mu.hat = mean(data)
   sigma.minus.hat = sqrt(mean((data-MAR)^2*(data<=MAR)))
   SoR.const.hat = (mu.hat-MAR)/sigma.minus.hat

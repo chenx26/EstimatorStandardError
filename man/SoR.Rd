@@ -2,7 +2,7 @@
 % Please edit documentation in R/Measures.R
 \name{SoR}
 \alias{SoR}
-\title{Compute sample Sortino Ratio}
+\title{Compute sample Sortino Ratio with mean threshold}
 \usage{
 SoR(data, rf = 0)
 }
@@ -15,7 +15,7 @@ SoR(data, rf = 0)
 Sample SoR
 }
 \description{
-Compute sample Sortino Ratio
+Compute sample Sortino Ratio with mean threshold
 }
 \examples{
 SoR(rnorm(10))
