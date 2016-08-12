@@ -35,7 +35,7 @@ EstimatorSE = function(data, ...,
                  VaR = VaR.hist,
                  ES = ES.hist,
                  SR = SR,
-                 SoR = SoR,
+                 SoR = SoR.const,
                  STARR = STARR
   )
   myfun.IF = switch (estimator.fun,
@@ -44,7 +44,7 @@ EstimatorSE = function(data, ...,
                      VaR = VaR.IF,
                      ES = ES.IF,
                      SR = SR.IF,
-                     SoR = SoR.IF,
+                     SoR = SoR.const.IF,
                      STARR = STARR.IF
   )
 
