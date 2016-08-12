@@ -111,6 +111,29 @@ SoR.IF=function(data, ..., rf=0){
   return(tmp)
 }
 
+
+#' Influence Function of Sortino Ratio with Constant Threshold
+#'
+#' @param data Vector of data
+#' @param ... other parameters
+#' @param MAR Constant Threshold
+#'
+#' @return IF of SoR
+#' @export
+#'
+#' @examples
+#' SoR.const.IF(rnorm(10),MAR = 0.1)
+SoR.const.IF = function(data, ... , MAR = 0){
+  mu.hat=mean(data)
+  sigma.hat=sqrt(mean((data-mu.hat)^2))
+  sigma.minus.hat=sqrt(mean((data-MAR)^2*(data<=MAR)))
+  SoR.hat=(mu.hat-MAR)/sigma.minus.hat
+  tmp=-SoR.hat/2/sigma.minus.hat^2*(data-MAR)^2*(data<=MAR)+
+    1/sigma.minus.hat*(data-mu.hat)+
+    SoR.hat/2
+  return(tmp)
+}
+
 #' Influence Function of STARR Ratio
 #'
 #' @param data Vector of data
