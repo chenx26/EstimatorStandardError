@@ -47,7 +47,11 @@ m4 is the cokurtosis matrix of the return series, default NULL, see Details}
 the standard error of the estimated standard deviation. One of \code{"none"} (default),
 \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}}
 
-\item{\dots}{any other passthru parameters}
+\item{\dots}{any other passthru parameters. This include two types of parameters.
+The first type is parameters associated with the risk/performance measure, such as tail
+probability for VaR and ES. The second type is the parameters associated with the metohd
+used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+\code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.}
 }
 \description{
 Calculates Value-at-Risk(VaR) for univariate, component, and marginal cases

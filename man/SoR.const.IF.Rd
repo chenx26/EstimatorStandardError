@@ -11,7 +11,7 @@ SoR.const.IF(data, ..., const = 0)
 
 \item{...}{other parameters}
 
-\item{MAR}{Constant Threshold}
+\item{const}{The threshodl}
 }
 \value{
 IF of SoR

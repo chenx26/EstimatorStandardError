@@ -115,8 +115,8 @@ SoR.IF=function(data, ..., rf=0){
 #' Influence Function of Sortino Ratio with Constant Threshold
 #'
 #' @param data Vector of data
+#' @param const The threshodl
 #' @param ... other parameters
-#' @param MAR Constant Threshold
 #'
 #' @return IF of SoR
 #' @export

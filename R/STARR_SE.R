@@ -1,7 +1,11 @@
 #' Wrapper function that computes STARR and the standard error of the estimate
 #'
 #' @param data data
-#' @param ... other parameters
+#' @param \dots any other passthru parameters. This include two types of parameters.
+#' The first type is parameters associated with the risk/performance measure, such as tail
+#' probability for VaR and ES. The second type is the parameters associated with the metohd
+#' used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+#' \code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.
 #' @param alpha tail probability
 #' @param rf risk free rate
 #' @param se.method a character string indicating which method should be used to compute

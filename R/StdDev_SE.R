@@ -36,7 +36,11 @@
 #'
 #' @param R a vector, matrix, data frame, timeSeries or zoo object of asset
 #' returns
-#' @param \dots any other passthru parameters
+#' @param \dots any other passthru parameters. This include two types of parameters.
+#' The first type is parameters associated with the risk/performance measure, such as tail
+#' probability for VaR and ES. The second type is the parameters associated with the metohd
+#' used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+#' \code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.
 #' @param clean method for data cleaning through \code{\link{Return.clean}}.
 #' Current options are "none", "boudt", or "geltner".
 #' @param portfolio_method one of "single","component" defining whether to do

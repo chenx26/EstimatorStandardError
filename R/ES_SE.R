@@ -36,7 +36,11 @@
 #' m4 is the cokurtosis matrix of the return series, default NULL, see Details
 #' @param invert TRUE/FALSE whether to invert the VaR measure.  see Details.
 #' @param operational TRUE/FALSE, default TRUE, see Details.
-#' @param \dots any other passthru parameters
+#' @param \dots any other passthru parameters. This include two types of parameters.
+#' The first type is parameters associated with the risk/performance measure, such as tail
+#' probability for VaR and ES. The second type is the parameters associated with the metohd
+#' used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+#' \code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.
 #' @param se.method a character string indicating which method should be used to compute
 #' the standard error of the estimated standard deviation. One of \code{"none"} (default),
 #' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
@@ -70,7 +74,7 @@
 #' decompose total portfolio ES into the risk contributions of each of the
 #' portfolio components. For the above mentioned ES estimators, such a
 #' decomposition is possible in a financially meaningful way.
-#' @author Brian G. Peterson, Kris Boudt and Xin Chen
+#' @author Xin Chen, Brian G. Peterson and Kris Boudt
 #' @seealso \code{\link{VaR}} \cr \code{\link{SharpeRatio.modified}} \cr
 #' \code{\link{chart.VaRSensitivity}} \cr \code{\link{Return.clean}}
 #'

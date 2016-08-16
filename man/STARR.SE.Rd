@@ -9,8 +9,6 @@ STARR.SE(data, ..., alpha = 0.1, rf = 0, se.method = "none")
 \arguments{
 \item{data}{data}
 
-\item{...}{other parameters}
-
 \item{alpha}{tail probability}
 
 \item{rf}{risk free rate}
@@ -19,6 +17,12 @@ STARR.SE(data, ..., alpha = 0.1, rf = 0, se.method = "none")
 the standard error of the estimated standard deviation. One of \code{"none"} (default),
 \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
 only when \code{method="historical"} and \code{portfolio_method="single"}.}
+
+\item{\dots}{any other passthru parameters. This include two types of parameters.
+The first type is parameters associated with the risk/performance measure, such as tail
+probability for VaR and ES. The second type is the parameters associated with the metohd
+used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+\code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.}
 }
 \value{
 a vector or a list depending on se.method
