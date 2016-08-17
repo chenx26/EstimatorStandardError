@@ -22,4 +22,7 @@ Compute the standard error using influence function approach for a vector
 \examples{
 SE.IF.iid(rnorm(100), SD.IF)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

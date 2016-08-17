@@ -58,7 +58,7 @@ round(SortinoRatio(managers[, 1:8]),4)
 
 }
 \author{
-Brian G. Peterson
+@author Xin Chen, \email{chenx26@uw.edu}
 }
 \references{
 Sortino, F. and Price, L. Performance Measurement in a Downside

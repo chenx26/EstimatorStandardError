@@ -14,12 +14,15 @@ SoR.const(data, ..., MAR = 0)
 \item{MAR}{Constant Threshold}
 }
 \value{
-IF of SoR
+SoR
 }
 \description{
 Compute sample Sortino Ratio with constant threshold
 }
 \examples{
 SoR.const.IF(rnorm(10),MAR = 0.1)
+}
+\author{
+Xin Chen, \email{chenx26@uw.edu}
 }
 

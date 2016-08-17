@@ -92,12 +92,12 @@ SharpeRatio.SE(edhec,Rf = .04/12)
 h2o.init()
 (res=SharpeRatio.SE(edhec, FUN = "StdDev",
                    se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-h2o.shutdown(prompt=FALSE)
+# h2o.shutdown(prompt=FALSE)
 printSE(res, round.digit = 5)
 }
 }
 \author{
-Brian G. Peterson
+@author Xin Chen, \email{chenx26@uw.edu}
 }
 \references{
 Sharpe, W.F. The Sharpe Ratio,\emph{Journal of Portfolio

@@ -5,6 +5,7 @@
 #'
 #' @return No return values
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' data(edhec)

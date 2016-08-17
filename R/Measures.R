@@ -7,6 +7,7 @@
 #'
 #' @return Value of Sample Sharpe Ratio
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SR(rnorm(10))
@@ -24,6 +25,7 @@ SR=function(data,rf=0){
 #'
 #' @return Sample VaR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' VaR.hist(rnorm(10))
@@ -38,6 +40,7 @@ VaR.hist=function(data,alpha=0.1){
 #'
 #' @return sample ES
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' ES(rnorm(10))
@@ -53,6 +56,7 @@ ES.hist=function(data,alpha=0.1){
 #'
 #' @return sample RES
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' RES(rnorm(1000))
@@ -68,6 +72,7 @@ RES=function(data,alpha=0.01,beta=0.1){
 #'
 #' @return Sample SoR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SoR(rnorm(10))
@@ -84,8 +89,9 @@ SoR = function(data, rf = 0){
 #' @param ... other parameters
 #' @param MAR Constant Threshold
 #'
-#' @return IF of SoR
+#' @return SoR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SoR.const.IF(rnorm(10),MAR = 0.1)
@@ -105,6 +111,7 @@ SoR.const = function(data, ..., MAR = 0){
 #'
 #' @return sample STARR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' STARR(rnorm(10))

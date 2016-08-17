@@ -25,4 +25,7 @@ the standard error of the measure
 \description{
 Compute the standard error using GLM-EN approach for serially correlated data
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

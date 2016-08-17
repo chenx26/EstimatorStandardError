@@ -22,4 +22,7 @@ Influence Function of Expected Shortfall (ES)
 \examples{
 ES.IF(rnorm(10))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

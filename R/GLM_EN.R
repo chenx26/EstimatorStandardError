@@ -2,7 +2,7 @@
 #'
 #' @param data Vector of data
 #' @param max.freq Maximum frequency to be computed
-#' @author Xin Chen
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @return list of frequencies and corresponding periodograms
 #' @export
@@ -43,7 +43,7 @@ myperiodogram=function(data,max.freq=0.5){
 #' require(h2o)
 #' h2o.init()
 #' SE.GLM.LASSO(rnorm(10))
-#' h2o.shutdown(prompt=FALSE)
+#' # h2o.shutdown(prompt=FALSE)
 SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   h2o.no_progress()
   N=length(data)

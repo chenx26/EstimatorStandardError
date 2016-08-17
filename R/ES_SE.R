@@ -74,7 +74,7 @@
 #' decompose total portfolio ES into the risk contributions of each of the
 #' portfolio components. For the above mentioned ES estimators, such a
 #' decomposition is possible in a financially meaningful way.
-#' @author Xin Chen, Brian G. Peterson and Kris Boudt
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #' @seealso \code{\link{VaR}} \cr \code{\link{SharpeRatio.modified}} \cr
 #' \code{\link{chart.VaRSensitivity}} \cr \code{\link{Return.clean}}
 #'
@@ -107,9 +107,9 @@
 #'
 #'     # use more than one method at the same time
 #'     h2o.init()
-#'     (res=ES.SE(edhec, p=.95, method="historical",
-#'     se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-#'     h2o.shutdown(prompt=FALSE)
+#'     res=ES.SE(edhec, p=.95, method="historical",
+#'     se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"))
+#'     # h2o.shutdown(prompt=FALSE)
 #'     printSE(res)
 #'
 #'     # now use Gaussian
@@ -158,10 +158,6 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
   clean = clean[1]
   portfolio_method = portfolio_method[1]
   if(portfolio_method == "single" & is.null(weights) & method == "historical"){
-    if (is.null(weights) & portfolio_method != "single"){
-      message("no weights passed in, assuming equal weighted portfolio")
-      weights=t(rep(1/dim(R)[[2]], dim(R)[[2]]))
-    }
     if(!is.null(R)){
       R <- checkData(R, method="xts", ...)
       columns=colnames(R)

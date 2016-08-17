@@ -27,4 +27,7 @@ compute the standard error for the xts object
 data(edhec)
 SE.xts(edhec, SE.IF.iid, sd, SD.IF)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

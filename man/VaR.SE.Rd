@@ -116,7 +116,7 @@ decomposition is possible in a financially meaningful way.
 
 }
 \author{
-Brian G. Peterson, Kris Boudt and Xin Chen
+Xin Chen, \email{chenx26@uw.edu}
 }
 \references{
 Boudt, Kris, Peterson, Brian, and Christophe Croux. 2008.

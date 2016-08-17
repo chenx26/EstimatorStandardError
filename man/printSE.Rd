@@ -22,4 +22,7 @@ data(edhec)
 res = ES.SE(edhec, p=.95, method="historical",se.method = "IFiid")
 printSE(res, round.digit = 4)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

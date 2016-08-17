@@ -101,7 +101,7 @@ deviation.
 
 }
 \author{
-Brian G. Peterson and Kris Boudt
+@author Xin Chen, \email{chenx26@uw.edu}
 }
 \seealso{
 \code{\link{Return.clean}} \code{sd}

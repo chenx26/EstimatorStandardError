@@ -22,4 +22,7 @@ Compute the influence function of value-at-risk
 \examples{
 VaR.IF(rnorm(10))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

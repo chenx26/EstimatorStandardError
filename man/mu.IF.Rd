@@ -21,6 +21,6 @@ Influence Function of Mean
 mu.IF(rnorm(10))
 }
 \author{
-Xin Chen
+Xin Chen, \email{chenx26@uw.edu}
 }
 

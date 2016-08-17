@@ -7,7 +7,7 @@
 #'
 #' @return IF of Mean
 #' @export
-#' @author Xin Chen
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' mu.IF(rnorm(10))
@@ -22,6 +22,7 @@ mu.IF=function(data,...){
 #' @param ... other parameters
 #'
 #' @return IF of SD
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #' @export
 #'
 #' @examples
@@ -39,6 +40,7 @@ SD.IF=function(data,...){
 #' @param ... other parameters
 #'
 #' @return Influence Function of VaR
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #' @export
 #'
 #' @examples
@@ -57,6 +59,7 @@ VaR.IF=function(data, ..., alpha = 0.1){
 #' @param ... other parameters
 #'
 #' @return IF of ES
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #' @export
 #'
 #' @examples
@@ -77,6 +80,7 @@ ES.IF=function(data, ..., alpha=0.1){
 #'
 #' @return vector of influence function
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SR.IF(rnorm(10))
@@ -96,6 +100,7 @@ SR.IF=function(data, ..., rf=0){
 #'
 #' @return IF of SoR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SoR.IF(rnorm(10))
@@ -120,6 +125,7 @@ SoR.IF=function(data, ..., rf=0){
 #'
 #' @return IF of SoR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SoR.const.IF(rnorm(10),MAR = 0.1)
@@ -144,6 +150,7 @@ SoR.const.IF = function(data, ... , const = 0){
 #'
 #' @return IF of STARR
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' STARR.IF(rnorm(10))

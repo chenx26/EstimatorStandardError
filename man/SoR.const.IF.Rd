@@ -22,4 +22,7 @@ Influence Function of Sortino Ratio with Constant Threshold
 \examples{
 SoR.const.IF(rnorm(10),MAR = 0.1)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

@@ -26,4 +26,7 @@ Compute the standard error of the measure by iid bootstrapping
 \examples{
 SE.BOOT.iid(x = rnorm(100), myfun = mean, nsim = 100)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

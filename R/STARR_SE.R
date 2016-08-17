@@ -15,6 +15,7 @@
 #'
 #' @return a vector or a list depending on se.method
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
 STARR.SE = function(data, ..., alpha = 0.1, rf = 0, se.method = "none"){

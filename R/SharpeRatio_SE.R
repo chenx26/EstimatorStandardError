@@ -49,7 +49,7 @@
 #' the standard error of the estimated standard deviation. One of \code{"none"} (default),
 #' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
 #' only when \code{method="historical"} and \code{portfolio_method="single"}.
-#' @author Brian G. Peterson
+#' @author @author Xin Chen, \email{chenx26@uw.edu}
 #' @seealso \code{\link{SharpeRatio.annualized}} \cr
 #' \code{\link{InformationRatio}} \cr \code{\link{TrackingError}} \cr
 #' \code{\link{ActivePremium}} \cr \code{\link{SortinoRatio}} \cr
@@ -86,7 +86,7 @@
 #' h2o.init()
 #' (res=SharpeRatio.SE(edhec, FUN = "StdDev",
 #'                    se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-#' h2o.shutdown(prompt=FALSE)
+#' # h2o.shutdown(prompt=FALSE)
 #' printSE(res, round.digit = 5)
 #' }
 #' @export

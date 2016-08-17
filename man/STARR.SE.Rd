@@ -30,4 +30,7 @@ a vector or a list depending on se.method
 \description{
 Wrapper function that computes STARR and the standard error of the estimate
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

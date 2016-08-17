@@ -22,4 +22,7 @@ Influence Function of Sortino Ratio with Mean Return Threshold
 \examples{
 SoR.IF(rnorm(10))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

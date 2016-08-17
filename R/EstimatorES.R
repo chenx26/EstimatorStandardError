@@ -12,14 +12,14 @@
 #'
 #' @return the standard error of the specified risk/performance measure using the specified method
 #' @export
-#' @author Xin Chen
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' data(edhec)
 #' EstimatorSE(edhec,estimator.fun="SD",se.method="IFiid")
 #' h2o.init()
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="IFcor")
-#' h2o.shutdown(prompt=FALSE)
+#' # h2o.shutdown(prompt=FALSE)
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTiid", nsim=100)
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTcor", nsim=100,
 #' sim = "fixed", l = round(nrow(edhec)/5))
@@ -69,6 +69,7 @@ EstimatorSE = function(data, ...,
 #'
 #' @return standard errors
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' data(edhec)
@@ -94,6 +95,7 @@ SE.xts = function(x, se.fun, myfun, myfun.IF, ...){
 #'
 #' @return standard error of the measure
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SE.IF.iid(rnorm(100), SD.IF)
@@ -116,6 +118,7 @@ SE.IF.iid = function(x, myfun.IF, ...){
 #'
 #' @return the standard error of the measure
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
 SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
@@ -134,6 +137,7 @@ SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
 #'
 #' @return standard error
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SE.BOOT.iid(x = rnorm(100), myfun = mean, nsim = 100)
@@ -154,6 +158,7 @@ SE.BOOT.iid = function(x, myfun, myfun.IF, ..., nsim = 100){
 #'
 #' @return standard error
 #' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @examples
 #' SE.BOOT.cor(x = rnorm(100), myfun = mean, nsim = 100)

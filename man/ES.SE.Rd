@@ -104,9 +104,9 @@ decomposition is possible in a financially meaningful way.
 
     # use more than one method at the same time
     h2o.init()
-    (res=ES.SE(edhec, p=.95, method="historical",
-    se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-    h2o.shutdown(prompt=FALSE)
+    res=ES.SE(edhec, p=.95, method="historical",
+    se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"))
+    # h2o.shutdown(prompt=FALSE)
     printSE(res)
 
     # now use Gaussian
@@ -127,7 +127,7 @@ decomposition is possible in a financially meaningful way.
     ES.SE(edhec, clean="boudt", portfolio_method="component")
 }
 \author{
-Xin Chen, Brian G. Peterson and Kris Boudt
+Xin Chen, \email{chenx26@uw.edu}
 }
 \references{
 Boudt, Kris, Peterson, Brian, and Christophe Croux. 2008.

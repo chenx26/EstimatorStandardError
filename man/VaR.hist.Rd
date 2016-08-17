@@ -20,4 +20,7 @@ Compute sample value-at-risk
 \examples{
 VaR.hist(rnorm(10))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

@@ -31,4 +31,7 @@ Compute the standard error of the measure by tsboot()
 \examples{
 SE.BOOT.cor(x = rnorm(100), myfun = mean, nsim = 100)
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

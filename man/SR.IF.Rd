@@ -22,4 +22,7 @@ Compute the Influence Function value of Sharpe Ratio
 \examples{
 SR.IF(rnorm(10))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

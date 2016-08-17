@@ -63,7 +63,7 @@
 #' @param method a character string indicating which correlation coefficient
 #' (or covariance) is to be computed.  One of \code{"pearson"} (default),
 #' \code{"kendall"}, or \code{"spearman"}, can be abbreviated.
-#' @author Brian G. Peterson and Kris Boudt
+#' @author @author Xin Chen, \email{chenx26@uw.edu}
 #' @seealso \code{\link{Return.clean}} \code{sd}
 ###keywords ts multivariate distribution models
 #' @examples
@@ -101,27 +101,6 @@ StdDev.SE <- function (R , ..., clean=c("none","boudt","geltner"),
     clean = clean[1]
     R <- checkData(R, method="xts", ...)
     columns=colnames(R)
-
-    if (is.null(weights) & portfolio_method != "single"){
-      message("no weights passed in, assuming equal weighted portfolio")
-      weights=t(rep(1/dim(R)[[2]], dim(R)[[2]]))
-    }
-
-    # check weights options
-    if (!is.null(weights)) {
-      if (is.vector(weights)){
-        # message("weights are a vector, will use same weights for entire time series") # remove this warning if you call function recursively
-        if (length (weights)!=ncol(R)) {
-          stop("number of items in weighting vector not equal to number of columns in R")
-        }
-      } else {
-        weights = checkData(weights, method="matrix", ...)
-        if (ncol(weights) != ncol(R)) {
-          stop("number of columns in weighting timeseries not equal to number of columns in R")
-        }
-        #@todo: check for date overlap with R and weights
-      }
-    } # end weight checks
 
     if(clean!="none"){
       R = as.matrix(Return.clean(R, method=clean))

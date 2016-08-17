@@ -22,4 +22,7 @@ Compute sample Robust Expected Shortfall
 \examples{
 RES(rnorm(1000))
 }
+\author{
+Xin Chen, \email{chenx26@uw.edu}
+}
 

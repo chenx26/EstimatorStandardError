@@ -70,7 +70,7 @@
 #' to decompose total portfolio VaR into the risk contributions of each of the
 #' portfolio components.  For the above mentioned VaR estimators, such a
 #' decomposition is possible in a financially meaningful way.
-#' @author Brian G. Peterson, Kris Boudt and Xin Chen
+#' @author Xin Chen, \email{chenx26@uw.edu}
 #' @seealso \code{\link{SharpeRatio.modified}} \cr
 #' \code{\link{chart.VaRSensitivity}} \cr
 #' \code{\link{Return.clean}}
@@ -175,10 +175,6 @@ VaR.SE <-
     ## when VaR is computed using single and historical, compute standard error
 
     if(portfolio_method == "single" & is.null(weights) & method == "historical"){
-    if (is.null(weights) & portfolio_method != "single"){
-      message("no weights passed in, assuming equal weighted portfolio")
-      weights=t(rep(1/dim(R)[[2]], dim(R)[[2]]))
-    }
     if(!is.null(R)){
       R <- checkData(R, method="xts", ...)
       columns=colnames(R)

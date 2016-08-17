@@ -36,7 +36,7 @@
 #' the standard error of the estimated standard deviation. One of \code{"none"} (default),
 #' \code{"IFiid"}, \code{"IFcor"}, \code{"BOOTiid"}, \code{"BOOTcor"}. Currently, it works
 #' only when \code{method="historical"} and \code{portfolio_method="single"}.
-#' @author Brian G. Peterson
+#' @author @author Xin Chen, \email{chenx26@uw.edu}
 #' @seealso \code{\link{SharpeRatio}} \cr \code{\link{DownsideDeviation}} \cr
 #' \code{\link{SemiVariance}} \cr \code{\link{SemiDeviation}} \cr
 #' \code{\link{InformationRatio}}
