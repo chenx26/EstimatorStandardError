@@ -108,6 +108,7 @@ SoR.const = function(data, ..., MAR = 0){
 #' @param data vector of data
 #' @param alpha tail probability
 #' @param rf risk-free interest rate
+#' @param ... other parameters
 #'
 #' @return sample STARR
 #' @export
