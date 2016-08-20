@@ -187,7 +187,7 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
         stop("number of items in weights not equal to number of items in the mean vector")
       }
     }
-    if(se.method == "none" & length(se.method)==1){
+    if(se.method[1] == "none" & length(se.method)==1){
       return(myES)
     } else {
       res=list(ES=myES)

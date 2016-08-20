@@ -130,10 +130,11 @@ SoR.IF=function(data, ..., rf=0){
 #' @examples
 #' SoR.const.IF(rnorm(10),MAR = 0.1)
 SoR.const.IF = function(data, ... , const = 0){
+  N=length(data)
   MAR = const
   mu.hat=mean(data)
   sigma.hat=sqrt(mean((data-mu.hat)^2))
-  sigma.minus.hat=sqrt(mean((data-MAR)^2*(data<=MAR)))
+  sigma.minus.hat=sqrt(sum((data-MAR)^2*(data<=MAR))/N)
   SoR.hat=(mu.hat-MAR)/sigma.minus.hat
   tmp=-SoR.hat/2/sigma.minus.hat^2*(data-MAR)^2*(data<=MAR)+
     1/sigma.minus.hat*(data-mu.hat)+

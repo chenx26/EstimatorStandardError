@@ -105,7 +105,7 @@ StdDev.SE <- function (R , ..., clean=c("none","boudt","geltner"),
     if(clean!="none"){
       R = as.matrix(Return.clean(R, method=clean))
     }
-    if(se.method == "none" & length(se.method)==1){
+    if(se.method[1] == "none" & length(se.method)==1){
       return(myStdDev)
     } else {
       res=list(SD=myStdDev)

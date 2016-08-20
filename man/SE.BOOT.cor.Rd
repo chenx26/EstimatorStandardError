@@ -4,7 +4,7 @@
 \alias{SE.BOOT.cor}
 \title{Compute the standard error of the measure by tsboot()}
 \usage{
-SE.BOOT.cor(x, myfun, myfun.IF, ..., nsim = 100, sim = "fixed",
+SE.BOOT.cor(x, myfun, myfun.IF, ..., nsim = 1000, sim = "fixed",
   l = round(length(x)/5))
 }
 \arguments{

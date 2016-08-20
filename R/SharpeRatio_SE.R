@@ -98,7 +98,7 @@ SharpeRatio.SE <-
     mySR = SharpeRatio(R = R, Rf = Rf, p = p, FUN = FUN,
                        weights = weights, annualize = annualize, ...)
 
-    if(length(FUN)==1 & FUN=="StdDev" & is.null(weights) & annualize == FALSE & se.method!="none"){
+    if(length(FUN)==1 & FUN=="StdDev" & is.null(weights) & annualize == FALSE & se.method[1]!="none"){
 
       R = checkData(R)
 

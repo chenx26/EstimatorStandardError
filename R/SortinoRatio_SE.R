@@ -72,7 +72,7 @@ SortinoRatio.SE <-
       R=Return.portfolio(R,weights,...)
     }
 
-    if(se.method!="none"){
+    if(se.method[1]!="none"){
       res=list(SoR=mySoR)
       # for each of the method specified in se.method, compute the standard error
       for(mymethod in se.method){

@@ -204,7 +204,7 @@ VaR.SE <-
         stop("number of items in weights not equal to number of items in the mean vector")
       }
     }
-    if(se.method == "none" & length(se.method)==1){
+    if(se.method[1] == "none" & length(se.method)==1){
         return(myVaR)
       } else {
         res=list(VaR=myVaR)

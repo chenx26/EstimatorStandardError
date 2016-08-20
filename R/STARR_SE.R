@@ -22,7 +22,7 @@ STARR.SE = function(data, ..., alpha = 0.1, rf = 0, se.method = "none"){
   data = checkData(data)
   mySTARR = apply(data, 2, STARR, alpha = alpha, rf = rf, ...)
   names(mySTARR) = colnames(data)
-  if(se.method == "none" & length(se.method)==1){
+  if(se.method[1] == "none" & length(se.method)==1){
     return(mySTARR)
   } else {
     res=list(STARR=mySTARR)

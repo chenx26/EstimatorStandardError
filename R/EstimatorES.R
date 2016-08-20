@@ -162,7 +162,7 @@ SE.BOOT.iid = function(x, myfun, myfun.IF, ..., nsim = 100){
 #'
 #' @examples
 #' SE.BOOT.cor(x = rnorm(100), myfun = mean, nsim = 100)
-SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 100,
+SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
                        sim = "fixed", l = round(length(x)/5)){
   res = tsboot(tseries = x, statistic = function(x,...) myfun(x,...), R = nsim,
                sim = sim, l = l,...)
