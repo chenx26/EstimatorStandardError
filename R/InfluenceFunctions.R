@@ -30,7 +30,7 @@ mu.IF=function(data,...){
 SD.IF=function(data,...){
   mu.hat=mean(data)
   sd.hat=sd(data)
-  return((data-mu.hat)^2-sd.hat^2)
+  return(((data-mu.hat)^2-sd.hat^2)/2/sd.hat)
 }
 
 #' Compute the influence function of value-at-risk
