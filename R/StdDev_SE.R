@@ -99,7 +99,7 @@ StdDev.SE <- function (R , ..., clean=c("none","boudt","geltner"),
   if(portfolio_method[1] == "single" & is.null(weights)){
     portfolio_method = portfolio_method[1]
     clean = clean[1]
-    R <- checkData(R, method="xts", ...)
+    R <- checkData(R, ...)
     columns=colnames(R)
 
     if(clean!="none"){
