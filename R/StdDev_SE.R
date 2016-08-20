@@ -96,7 +96,7 @@ StdDev.SE <- function (R , ..., clean=c("none","boudt","geltner"),
   myStdDev = StdDev(R , ..., clean=c("none","boudt","geltner"),
                     portfolio_method=c("single","component"), weights=NULL, mu=NULL, sigma=NULL,
                     use="everything", method=c("pearson", "kendall", "spearman"))
-  if(portfolio_method == "single" & is.null(weights)){
+  if(portfolio_method[1] == "single" & is.null(weights)){
     portfolio_method = portfolio_method[1]
     clean = clean[1]
     R <- checkData(R, method="xts", ...)
