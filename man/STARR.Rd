@@ -9,6 +9,8 @@ STARR(data, ..., alpha = 1, rf = 0)
 \arguments{
 \item{data}{vector of data}
 
+\item{...}{other parameters}
+
 \item{alpha}{tail probability}
 
 \item{rf}{risk-free interest rate}
