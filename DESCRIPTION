@@ -10,7 +10,8 @@ LazyData: TRUE
 Imports:
     sandwich
 Suggests:
-    testthat
+    testthat, R.rsp
 Depends:
     xts,zoo,PerformanceAnalytics, robustbase, boot, h2o
 RoxygenNote: 5.0.1
+VignetteBuilder: R.rsp
