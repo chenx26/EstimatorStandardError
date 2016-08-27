@@ -135,5 +135,21 @@ STARR = function(data, ..., alpha = 1, rf = 0){
 #' LPM(rnorm(10),const = -0.1)
 LPM = function(data, ..., const = 0){
   N = length(data)
-  return(1/N*sum(data[data<=const]))
+  return(1/N*sum(const-data[data<=const]))
+}
+
+#' Compute sample Omega Ratio
+#'
+#' @param data vector of data
+#' @param ... other parameters
+#' @param const the constant threshold
+#'
+#' @return sample Omega Ratio
+#' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#'
+#' @examples
+#' OmegaRatio(rnorm(10),const = -0.1)
+OmegaRatio = function(data, ..., const = 0){
+  return(sum(data[data>=const]-const)/sum(const-data[data<=const]))
 }
