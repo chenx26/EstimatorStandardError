@@ -121,3 +121,19 @@ STARR = function(data, ..., alpha = 1, rf = 0){
   return((mu.hat - rf)/ES(data, alpha = alpha))
 }
 
+#' Compute sample lower partial moment
+#'
+#' @param data vector of data
+#' @param ... other parameters
+#' @param const the constant threshold
+#'
+#' @return sample lower partial moment
+#' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#'
+#' @examples
+#' LPM(rnorm(10),const = -0.1)
+LPM = function(data, ..., const = 0){
+  N = length(data)
+  return(1/N*sum(data[data<=const]))
+}
