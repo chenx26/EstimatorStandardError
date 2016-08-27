@@ -166,8 +166,31 @@ STARR.IF=function(data, ..., alpha=0.1, rf = 0){
   return(tmp)
 }
 
-LPM.IF = function(data, ..., const = 0){
-
+#' Compute the influence function of LPM
+#'
+#' @param data vector of data
+#' @param ... other parameters
+#' @param const the constant threshold
+#' @param k the order of LPM, can only be 1 or 2
+#'
+#' @return inlfuence function of LPM
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#' @export
+#'
+#' @examples
+#' LPM.IF(rnorm(10), const = 0.1, k=2)
+LPM.IF = function(data, ..., const = 0, k = 1){
+  if(k == 1){
+    return((const - data)*(data <= const) - LPM(data, ..., const = const, k = k))
+  } else if (k == 2) {
+    tmp = (data - const)^2 * (data <= const)
+    myLPMs = LPM(data, ..., const = const, k = k)
+    tmp = tmp - myLPMs^2
+    tmp = tmp / 2 / myLPMs
+    return(tmp)
+  } else {
+    stop("Influence Function of LPM is only available for k = 1 or 2")
+  }
 }
 
 
