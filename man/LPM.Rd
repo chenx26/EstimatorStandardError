@@ -4,7 +4,7 @@
 \alias{LPM}
 \title{Compute sample lower partial moment}
 \usage{
-LPM(data, ..., const = 0)
+LPM(data, ..., const = 0, k = 1)
 }
 \arguments{
 \item{data}{vector of data}

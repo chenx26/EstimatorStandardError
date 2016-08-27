@@ -133,9 +133,9 @@ STARR = function(data, ..., alpha = 1, rf = 0){
 #'
 #' @examples
 #' LPM(rnorm(10),const = -0.1)
-LPM = function(data, ..., const = 0){
+LPM = function(data, ..., const = 0, k = 1){
   N = length(data)
-  return(1/N*sum(const-data[data<=const]))
+  return(1/N*sum((const-data[data<=const])^k)^(1/k))
 }
 
 #' Compute sample Omega Ratio

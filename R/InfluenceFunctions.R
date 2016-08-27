@@ -166,6 +166,9 @@ STARR.IF=function(data, ..., alpha=0.1, rf = 0){
   return(tmp)
 }
 
+LPM.IF = function(data, ..., const = 0){
+
+}
 
 
 
