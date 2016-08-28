@@ -12,6 +12,8 @@ LPM(data, ..., const = 0, k = 1)
 \item{...}{other parameters}
 
 \item{const}{the constant threshold}
+
+\item{k}{order of the LPM to be computed}
 }
 \value{
 sample lower partial moment

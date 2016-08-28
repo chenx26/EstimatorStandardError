@@ -189,8 +189,30 @@ LPM.IF = function(data, ..., const = 0, k = 1){
     tmp = tmp / 2 / myLPMs
     return(tmp)
   } else {
-    stop("Influence Function of LPM is only available for k = 1 or 2")
+    stop("Influence Function of LPM is only available for k = 1 or 2",
+         call. = FALSE)
   }
+}
+
+#' Compute influence function of Omega Ratio
+#'
+#' @param data vector of data
+#' @param ... other parameters
+#' @param const the constant threshold
+#'
+#' @return IF of Omega
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#' @export
+#'
+#' @examples
+#' OmegaRatio.IF(rnorm(10), const = 0.1)
+OmegaRatio.IF = function(data, ..., const = 0){
+  N = length(data)
+  OmegaPlus = sum(data[data>=const]-const)/N
+  OmegaMinus = sum(const-data[data<=const])/N
+  tmp = ((data - const) * (data >= const) - OmegaPlus)/ OmegaMinus
+  tmp = tmp - OmegaPlus / OmegaMinus^2 * ((const - data) * (data <= const) - OmegaMinus)
+  return(tmp)
 }
 
 

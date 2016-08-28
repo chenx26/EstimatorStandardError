@@ -126,6 +126,7 @@ STARR = function(data, ..., alpha = 1, rf = 0){
 #' @param data vector of data
 #' @param ... other parameters
 #' @param const the constant threshold
+#' @param k order of the LPM to be computed
 #'
 #' @return sample lower partial moment
 #' @export
@@ -151,5 +152,8 @@ LPM = function(data, ..., const = 0, k = 1){
 #' @examples
 #' OmegaRatio(rnorm(10),const = -0.1)
 OmegaRatio = function(data, ..., const = 0){
-  return(sum(data[data>=const]-const)/sum(const-data[data<=const]))
+  N = length(data)
+  OmegaPlus = sum(data[data>=const]-const)/N
+  OmegaMinus = sum(const-data[data<=const])/N
+  return(OmegaPlus/OmegaMinus)
 }

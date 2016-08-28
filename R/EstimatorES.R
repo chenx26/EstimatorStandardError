@@ -36,7 +36,10 @@ EstimatorSE = function(data, ...,
                  ES = ES.hist,
                  SR = SR,
                  SoR = SoR.const,
-                 STARR = STARR
+                 STARR = STARR,
+                 LPM = LPM,
+                 OmegaRatio = OmegaRatio,
+                 stop("The estimator.fun specified is not implemented yet, please contact Xin Chen (chenx26@uw.edu) or submit an issue at the github repository")
   )
   myfun.IF = switch (estimator.fun,
                      Mean = mu.IF,
@@ -45,7 +48,10 @@ EstimatorSE = function(data, ...,
                      ES = ES.IF,
                      SR = SR.IF,
                      SoR = SoR.const.IF,
-                     STARR = STARR.IF
+                     STARR = STARR.IF,
+                     LPM = LPM.IF,
+                     OmegaRatio = OmegaRatio.IF,
+                     stop("The estimator.fun specified is not implemented yet, please contact Xin Chen (chenx26@uw.edu) or submit an issue at the github repository")
   )
 
   res = switch (se.method,
