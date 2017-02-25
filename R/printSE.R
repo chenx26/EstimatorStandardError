@@ -20,7 +20,7 @@ printSE = function(res , round.digit = 3){
   list.names = names(res)
   res.df = data.frame(sapply(res,as.vector))
   colnames(res.df) = list.names
-  rownames(res.df) = names(res[[1]])
+  rownames(res.df) = colnames(res[[1]])
   res.df = round(res.df, digits = round.digit)
   # res.df[2] = paste("(",res.df[,2],")",sep="")
   res.df[,-1] = apply(as.data.frame(res.df[,-1]),2,function(x) paste("(",x,")",sep=""))
