@@ -78,7 +78,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   my.glm.lasso=h2o.glm(x=colnames(x.h2o.df)[-1],y=colnames(x.h2o.df)[1],
                        training_frame = x.h2o.df, family = "gamma",
                        link="log",lambda_search = TRUE,alpha=alpha,
-                       ignore_const_cols = FALSE)
+                       ignore_const_cols = TRUE)
   my.glm.lasso@model$coefficients
 
   # predict with new data V0=1 and all other variables=0
