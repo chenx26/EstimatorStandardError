@@ -92,3 +92,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   # Step 4: return the estimated standard error
   return(sqrt(p0.hat/N))
 }
+
+
+
+
