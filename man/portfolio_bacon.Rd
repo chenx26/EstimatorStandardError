@@ -12,4 +12,3 @@ portfolio_bacon
 portfolio_bacon documentation here
 }
 \keyword{datasets}
-

@@ -41,4 +41,3 @@ sim = "fixed", l = round(nrow(edhec)/5))
 \author{
 Xin Chen, \email{chenx26@uw.edu}
 }
-

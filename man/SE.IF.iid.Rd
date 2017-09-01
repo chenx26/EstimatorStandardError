@@ -25,4 +25,3 @@ SE.IF.iid(rnorm(100), SD.IF)
 \author{
 Xin Chen, \email{chenx26@uw.edu}
 }
-

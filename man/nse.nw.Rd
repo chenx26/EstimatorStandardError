@@ -43,4 +43,3 @@ Newey, Whitney K., and Kenneth D. West. "Automatic lag selection in covariance m
 
 Zeileis, Achim. "Econometric computing with HC and HAC covariance matrix estimators." (2004).
 }
-

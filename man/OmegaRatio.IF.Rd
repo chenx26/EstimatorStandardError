@@ -25,4 +25,3 @@ OmegaRatio.IF(rnorm(10), const = 0.1)
 \author{
 Xin Chen, \email{chenx26@uw.edu}
 }
-

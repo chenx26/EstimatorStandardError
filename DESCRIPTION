@@ -13,5 +13,5 @@ Suggests:
     testthat, R.rsp
 Depends:
     xts,zoo,PerformanceAnalytics, robustbase, boot, h2o, glmnetRcpp
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: R.rsp

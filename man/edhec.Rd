@@ -12,4 +12,3 @@ edhec
 edhec documentation here
 }
 \keyword{datasets}
-

@@ -10,6 +10,12 @@ SortinoRatio.SE(R, ..., weights = NULL, se.method = "none", MAR = 0)
 \item{R}{an xts, vector, matrix, data frame, timeSeries or zoo object of
 asset returns}
 
+\item{\dots}{any other passthru parameters. This include two types of parameters.
+The first type is parameters associated with the risk/performance measure, such as tail
+probability for VaR and ES. The second type is the parameters associated with the metohd
+used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
+\code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.}
+
 \item{weights}{portfolio weighting vector, default NULL}
 
 \item{se.method}{a character string indicating which method should be used to compute
@@ -19,12 +25,6 @@ only when \code{method="historical"} and \code{portfolio_method="single"}.}
 
 \item{MAR}{Minimum Acceptable Return, in the same periodicity as your
 returns}
-
-\item{\dots}{any other passthru parameters. This include two types of parameters.
-The first type is parameters associated with the risk/performance measure, such as tail
-probability for VaR and ES. The second type is the parameters associated with the metohd
-used to compute the standard error. See \code{\link{SE.IF.iid}}, \code{\link{SE.IF.cor}},
-\code{\link{SE.BOOT.iid}}, \code{\link{SE.BOOT.cor}} for details.}
 }
 \description{
 Sortino proposed an improvement on the Sharpe Ratio to better account for
@@ -57,9 +57,6 @@ round(SortinoRatio(managers[, 1]),4)
 round(SortinoRatio(managers[, 1:8]),4)
 
 }
-\author{
-@author Xin Chen, \email{chenx26@uw.edu}
-}
 \references{
 Sortino, F. and Price, L. Performance Measurement in a Downside
 Risk Framework. \emph{Journal of Investing}. Fall 1994, 59-65.
@@ -69,4 +66,6 @@ Risk Framework. \emph{Journal of Investing}. Fall 1994, 59-65.
 \code{\link{SemiVariance}} \cr \code{\link{SemiDeviation}} \cr
 \code{\link{InformationRatio}}
 }
-
+\author{
+@author Xin Chen, \email{chenx26@uw.edu}
+}

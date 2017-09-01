@@ -27,4 +27,3 @@ h2o.init()
 SE.GLM.LASSO(rnorm(10))
 # h2o.shutdown(prompt=FALSE)
 }
-

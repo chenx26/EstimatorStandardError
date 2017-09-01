@@ -23,4 +23,3 @@ myperiodogram(rnorm(10))
 \author{
 Xin Chen, \email{chenx26@uw.edu}
 }
-
