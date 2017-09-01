@@ -93,6 +93,51 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   return(sqrt(p0.hat/N))
 }
 
+#' Compute the standard error of the mean of the data using glmnet_exp
+#'
+#' @param data vector of data
+#' @param d degree of polynomial
+#' @param alpha weight for Elastic Net regularizer
+#' @param keep what portion of sample spectral density to use for model fitting
+#'
+#' @return variance of the mean of the data
+#' @export
+#'
+
+SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1){
+
+  N=length(data)
+  # Step 1: compute the periodograms
+  my.periodogram=myperiodogram(data)
+  my.freq=my.periodogram$freq
+  my.periodogram=my.periodogram$spec
+
+  # remove values of frequency 0 as it does not contain information about the variance
+  my.freq=my.freq[-1]
+  my.periodogram=my.periodogram[-1]
+
+  # implement cut-off
+  nfreq=length(my.freq)
+  my.freq=my.freq[1:floor(nfreq*keep)]
+  my.periodogram=my.periodogram[1:floor(nfreq*keep)]
+
+  # Step 2: use GLM with BFGS optimization
+
+  # create 1, x, x^2, ..., x^d
+  x.mat=rep(1,length(my.freq))
+  for(col.iter in 1:d){
+    x.mat=cbind(x.mat,my.freq^col.iter)
+  }
+
+  # b0 = rnorm(d + 1)
+
+  # fit the glmnet_exp model
+  res = glmnet_exp(x.mat, my.periodogram, alpha = alpha)
+
+  # Step 3: return the estimated variance
+  return(exp(res[1])/N)
+}
+
 
 
 
