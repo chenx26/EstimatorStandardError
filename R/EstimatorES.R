@@ -26,7 +26,7 @@
 
 EstimatorSE = function(data, ...,
                    estimator.fun = c("Mean","SD","VaR","ES","SR","SoR","STARR"),
-                   se.method = c("none","IFiid","IFcor","BOOTiid","BOOTcor")){
+                   se.method = c("none","IFiid","IFcor", "IFcor.h2o", "BOOTiid","BOOTcor")){
   estimator.fun = estimator.fun[1]
   se.method = se.method[1]
   myfun = switch(estimator.fun,
@@ -58,6 +58,7 @@ EstimatorSE = function(data, ...,
     none = NULL,
     IFiid = SE.xts(data, SE.IF.iid, myfun, myfun.IF, ...),
     IFcor = SE.xts(data, SE.IF.cor, myfun, myfun.IF, ...),
+    IFcor.h2o = SE.xts(data, SE.IF.cor.h2o, myfun, myfun.IF, ...),
     BOOTiid = SE.xts(data, SE.BOOT.iid, myfun, myfun.IF, ...),
     BOOTcor = SE.xts(data, SE.BOOT.cor, myfun, myfun.IF,...)
   )
@@ -113,7 +114,7 @@ SE.IF.iid = function(x, myfun.IF, ...){
   return(sqrt(tmp/N))
 }
 
-#' Compute the standard error using GLM-EN approach for serially correlated data
+#' Compute the standard error using GLM-EN approach for serially correlated data using h2o package
 #'
 #' @param x the vector of data
 #' @param myfun.IF the influene function of the measure
@@ -127,7 +128,7 @@ SE.IF.iid = function(x, myfun.IF, ...){
 #' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
-SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
+SE.IF.cor.h2o = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
   data.IF = myfun.IF(x, ...)
   tmp = SE.GLM.LASSO(data.IF, d = d, alpha = alpha.lasso, keep = keep)
   return(tmp)
@@ -174,6 +175,27 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
                sim = sim, l = l,...)
   return(sd(res$t))
 }
+
+#' Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp
+#'
+#' @param x the vector of data
+#' @param myfun.IF the influene function of the measure
+#' @param d maximum order of the polynomial
+#' @param alpha.lasso weight for the elastic net
+#' @param keep portion of frequencies to be used
+#' @param ... other parameters
+#'
+#' @return the standard error of the measure
+#' @export
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#'
+
+SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
+  data.IF = myfun.IF(x, ...)
+  tmp = SE.glmnet_exp(data.IF, d = d, alpha = alpha.lasso, keep = keep)
+  return(tmp)
+}
+
 
 
 
