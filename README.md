@@ -3,4 +3,9 @@
 
 This is a package for computing the standard error of risk/performance estimators. For detailed information, please see the vignette.
 
+# Installing the glmnetRcpp package
+
+This package uses glmnetRcpp package https://github.com/chenx26/EstimatorStandardError. See the installation instructions there for details.
+
+
 
