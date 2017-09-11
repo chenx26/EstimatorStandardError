@@ -215,6 +215,30 @@ OmegaRatio.IF = function(data, ..., const = 0){
   return(tmp)
 }
 
+#' Influence Function of Semi-Standard Deviation using mean as the threshold
+#'
+#' @param data Vector of the data
+#' @param ... other parameters
+#'
+#' @return IF of SSD
+#' @author Xin Chen, \email{chenx26@uw.edu}
+#' @export
+#'
+#' @examples
+#' SSD.IF(rnorm(10))
+SSD.IF=function(data, ..., rf = 0){
+  mu.hat=mean(data)
+  sigma.hat=sqrt(mean((data-mu.hat)^2))
+  sigma.minus.hat=sqrt(mean((data-mu.hat)^2*(data<=mu.hat)))
+  SoR.hat=(mu.hat-rf)/sigma.minus.hat
+  tmp = (data - mu.hat)^2 * (data <= mu.hat)
+  tmp = tmp - 2 * mean((data-mu.hat) * (data <= mu.hat)) * (data - mu.hat)
+  tmp = tmp - sigma.minus.hat^2
+  tmp = tmp / 2 / sigma.minus.hat
+  return(tmp)
+}
+
+
 
 
 
