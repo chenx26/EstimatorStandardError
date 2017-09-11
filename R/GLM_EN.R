@@ -2,7 +2,6 @@
 #'
 #' @param data Vector of data
 #' @param max.freq Maximum frequency to be computed
-#' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 #' @return list of frequencies and corresponding periodograms
 #' @export
@@ -15,7 +14,9 @@ myperiodogram=function(data,max.freq=0.5){
   N=length(data)
   #   tmp=1:N
   #   inset=tmp[(1:N)<floor(N/2)]
-  return(list(spec=Mod(data.fft[1:floor(N/2)])^2/N,freq=((0:(floor(N/2)-1))/N)))
+  tmp = Mod(data.fft[1:floor(N/2)])^2/N
+  tmp = sapply(tmp, function(x) max(0.01,x))
+  return(list(spec=tmp,freq=((0:(floor(N/2)-1))/N)))
 }
 
 
