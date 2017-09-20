@@ -136,7 +136,7 @@ SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1){
   res = glmnet_exp(x.mat, my.periodogram, alpha = alpha)
 
   # Step 3: return the estimated variance
-  return(exp(res[1])/nfreq)
+  return(exp(res[1])/N)
 }
 
 
