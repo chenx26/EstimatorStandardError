@@ -9,24 +9,12 @@ nboot=500
 #--------- Set random seed
 set.seed(123)
 #--------- Expected Shortfall estimates and their S.E.'s
-# h2o.init()
-edhec = edhec * 1
-scale = FALSE
-if(scale){
-  edhec.sigmas = apply(edhec, 2, sd)
-  edhec = apply(edhec, 2, function(x) (x - mean(x))/sd(x))
-}
 
 res.ES=ES.SE(edhec, p=.95, method="historical",nsim = nboot,
              se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"),
              standardize = FALSE)
 
 res.ES.df = printSE(res.ES, round.digit = 3, valonly = FALSE)
-
-res.SR=SharpeRatio.SE(edhec, p=.95, method="historical",nsim = nboot,
-                      se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"))
-
-printSE(res.SR, round.digit = 3)
 
 ###### simulation test
 tmp = xts(matrix(rnorm(1500, 0.05, 0.2), nrow = 100), Sys.Date() - seq(100, 1))
