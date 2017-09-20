@@ -4,15 +4,17 @@
 \alias{printSE}
 \title{Formatted output of the results from xxx.SE() functions}
 \usage{
-printSE(res, round.digit = 3)
+printSE(res, round.digit = 3, valonly = TRUE)
 }
 \arguments{
 \item{res}{the results from the xx.SE() functions}
 
 \item{round.digit}{the number of digits to round to}
+
+\item{valonly}{if true, return only the data frame, otherwise print and return data frame}
 }
 \value{
-No return values
+data frame
 }
 \description{
 Formatted output of the results from xxx.SE() functions
