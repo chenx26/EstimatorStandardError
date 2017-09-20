@@ -20,6 +20,3 @@ Compute the periodogram as defined in H&W 1981
 \examples{
 myperiodogram(rnorm(10))
 }
-\author{
-Xin Chen, \email{chenx26@uw.edu}
-}

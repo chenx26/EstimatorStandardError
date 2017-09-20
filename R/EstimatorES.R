@@ -193,7 +193,7 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
 SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
   data.IF = myfun.IF(x, ...)
   tmp = SE.glmnet_exp(data.IF, d = d, alpha = alpha.lasso, keep = keep)
-  return(tmp)
+  return(sqrt(tmp))
 }
 
 

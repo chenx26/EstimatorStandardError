@@ -46,7 +46,7 @@ myperiodogram=function(data,max.freq=0.5){
 #' SE.GLM.LASSO(rnorm(10))
 #' # h2o.shutdown(prompt=FALSE)
 SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
-  h2o.no_progress()
+
   N=length(data)
   # Step 1: compute the periodograms
   my.periodogram=myperiodogram(data)
@@ -79,19 +79,19 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   my.glm.lasso=h2o.glm(x=colnames(x.h2o.df)[-1],y=colnames(x.h2o.df)[1],
                        training_frame = x.h2o.df, family = "gamma",
                        link="log",lambda_search = TRUE,alpha=alpha,
-                       ignore_const_cols = TRUE)
+                       ignore_const_cols = FALSE)
   my.glm.lasso@model$coefficients
 
   # predict with new data V0=1 and all other variables=0
   newx.mat=matrix(c(1,rep(0,d)),nrow=1)
   newx.df=as.data.frame(newx.mat)
-  colnames(newx.df)=paste0("V",0:d)
   newx.h2o.df=as.h2o(newx.df)
+  h2o::colnames(newx.h2o.df)=paste0("V",0:d)
   p0.hat=h2o.predict(my.glm.lasso,newx.h2o.df)[1,1]
 
 
-  # Step 4: return the estimated standard error
-  return(sqrt(p0.hat/N))
+  # Step 4: return the estimated variance
+  return(p0.hat/N)
 }
 
 #' Compute the standard error of the mean of the data using glmnet_exp
