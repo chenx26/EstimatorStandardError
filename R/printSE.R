@@ -18,11 +18,15 @@ printSE = function(res , round.digit = 3){
   #   return()
   # }
   list.names = names(res)
-  res.df = data.frame(sapply(res,as.vector))
+  res.df = data.frame(t(res[[1]]))
+  for(i in 2:length(list.names)){
+    res.df = cbind(res.df, res[[i]])
+  }
   colnames(res.df) = list.names
   rownames(res.df) = colnames(res[[1]])
-  res.df = round(res.df, digits = round.digit)
+#  res.df = round(res.df, digits = round.digit)
+  print(res.df, digits = round.digit)
   # res.df[2] = paste("(",res.df[,2],")",sep="")
-  res.df[,-1] = apply(as.data.frame(res.df[,-1]),2,function(x) paste("(",x,")",sep=""))
+  # res.df[,-1] = apply(as.data.frame(res.df[,-1]),2,function(x) paste("(",x,")",sep=""))
   return(res.df)
 }
