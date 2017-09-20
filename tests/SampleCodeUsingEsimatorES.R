@@ -21,7 +21,7 @@ res.ES=ES.SE(edhec, p=.95, method="historical",nsim = nboot,
              se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"),
              standardize = FALSE)
 
-res.ES.df = printSE(res.ES, round.digit = 3)
+res.ES.df = printSE(res.ES, round.digit = 3, valonly = FALSE)
 
 res.SR=SharpeRatio.SE(edhec, p=.95, method="historical",nsim = nboot,
                       se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"))
