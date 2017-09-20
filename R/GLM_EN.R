@@ -15,7 +15,7 @@ myperiodogram=function(data,max.freq=0.5){
   #   tmp=1:N
   #   inset=tmp[(1:N)<floor(N/2)]
   tmp = Mod(data.fft[1:floor(N/2)])^2/N
-  tmp = sapply(tmp, function(x) max(0.01,x))
+  tmp = sapply(tmp, function(x) max(0.00001,x))
   return(list(spec=tmp,freq=((0:(floor(N/2)-1))/N)))
 }
 
@@ -136,7 +136,7 @@ SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1){
   res = glmnet_exp(x.mat, my.periodogram, alpha = alpha)
 
   # Step 3: return the estimated variance
-  return(exp(res[1])/N)
+  return(exp(res[1])/nfreq)
 }
 
 
