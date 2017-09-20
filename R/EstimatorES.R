@@ -183,6 +183,7 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
 #' @param d maximum order of the polynomial
 #' @param alpha.lasso weight for the elastic net
 #' @param keep portion of frequencies to be used
+#' @param standardize whether to standardize data when computing standard error
 #' @param ... other parameters
 #'
 #' @return the standard error of the measure
