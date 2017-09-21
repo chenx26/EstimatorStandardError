@@ -24,7 +24,7 @@ ar1.coef = apply(edhec, 2,
                    return(res$ar[1])
                  }
 )
-cbind(res.ES.df, ar1.coef)
+print(cbind(res.ES.df, ar1.coef), digits = 2)
 
 ###### simulation test
 tmp = xts(matrix(rnorm(15000, 0.005, 0.02), nrow = 100), Sys.Date() - seq(100, 1))
