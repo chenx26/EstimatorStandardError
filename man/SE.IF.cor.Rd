@@ -5,7 +5,7 @@
 \title{Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp}
 \usage{
 SE.IF.cor(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1,
-  standardize = TRUE)
+  standardize = FALSE)
 }
 \arguments{
 \item{x}{the vector of data}

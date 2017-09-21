@@ -131,7 +131,7 @@ SE.IF.iid = function(x, myfun.IF, ...){
 SE.IF.cor.h2o = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
   data.IF = myfun.IF(x, ...)
   tmp = SE.GLM.LASSO(data.IF, d = d, alpha = alpha.lasso, keep = keep)
-  return(tmp)
+  return(sqrt(tmp))
 }
 
 #' Compute the standard error of the measure by iid bootstrapping
@@ -191,7 +191,7 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
 #' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
-SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1, standardize = TRUE){
+SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1, standardize = FALSE){
   if(standardize){
     x.sigma = sd(x)
     x = (x - mean(x))/sd(x)

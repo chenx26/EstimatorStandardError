@@ -83,10 +83,10 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   my.glm.lasso@model$coefficients
 
   # predict with new data V0=1 and all other variables=0
-  newx.mat=matrix(c(1,rep(0,d)),nrow=1)
+  newx.mat=matrix(rep(0, ncol(x.h2o.df)),nrow=1)
   newx.df=as.data.frame(newx.mat)
   newx.h2o.df=as.h2o(newx.df)
-  h2o::colnames(newx.h2o.df)=paste0("V",0:d)
+  h2o::colnames(newx.h2o.df)=h2o::colnames(x.h2o.df)
   p0.hat=h2o.predict(my.glm.lasso,newx.h2o.df)[1,1]
 
 
@@ -105,7 +105,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 #' @export
 #'
 
-SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1){
+SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1, standardize.periodogram = TRUE){
 
   N=length(data)
   # Step 1: compute the periodograms
@@ -121,6 +121,8 @@ SE.glmnet_exp=function(data, d=7, alpha=0.5, keep=1){
   nfreq=length(my.freq)
   my.freq=my.freq[1:floor(nfreq*keep)]
   my.periodogram=my.periodogram[1:floor(nfreq*keep)]
+
+  # standardize
 
   # Step 2: use GLM with BFGS optimization
 
