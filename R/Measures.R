@@ -29,7 +29,7 @@ SR=function(data,rf=0){
 #'
 #' @examples
 #' VaR.hist(rnorm(10))
-VaR.hist=function(data,alpha=0.1){
+VaR.hist=function(data,alpha=0.05){
   return(-quantile(data,alpha))
 }
 
@@ -44,7 +44,7 @@ VaR.hist=function(data,alpha=0.1){
 #'
 #' @examples
 #' ES(rnorm(10))
-ES.hist=function(data,alpha=0.1){
+ES.hist=function(data,alpha=0.05){
   return(-mean(data[data<=quantile(data,alpha)]))
 }
 
@@ -116,7 +116,7 @@ SoR.const = function(data, ..., MAR = 0){
 #'
 #' @examples
 #' STARR(rnorm(10))
-STARR = function(data, ..., alpha = 0.1, rf = 0){
+STARR = function(data, ..., alpha = 0.05, rf = 0){
   mu.hat=mean(data)
   return((mu.hat - rf)/ES.hist(data, alpha = alpha))
 }
