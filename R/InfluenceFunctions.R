@@ -45,7 +45,7 @@ SD.IF=function(data,...){
 #'
 #' @examples
 #' VaR.IF(rnorm(10))
-VaR.IF=function(data, ..., alpha = 0.1){
+VaR.IF=function(data, ..., alpha = 0.05){
   pdf.fit <- approxfun(density(data))
   qa=quantile(data,alpha)
   tmp=((data<=qa)-alpha)/pdf.fit(qa)
@@ -64,7 +64,7 @@ VaR.IF=function(data, ..., alpha = 0.1){
 #'
 #' @examples
 #' ES.IF(rnorm(10))
-ES.IF=function(data, ..., alpha=0.1){
+ES.IF=function(data, ..., alpha=0.05){
   pdf.fit <- approxfun(density(data))
   qa=quantile(data,alpha)
   ESa=-mean(data[data<=qa])
