@@ -4,7 +4,7 @@
 \alias{VaR.IF}
 \title{Compute the influence function of value-at-risk}
 \usage{
-VaR.IF(data, ..., alpha = 0.1)
+VaR.IF(data, ..., alpha = 0.05)
 }
 \arguments{
 \item{data}{The vector of data}

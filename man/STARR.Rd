@@ -4,7 +4,7 @@
 \alias{STARR}
 \title{Compute sample STARR}
 \usage{
-STARR(data, ..., alpha = 0.1, rf = 0)
+STARR(data, ..., alpha = 0.05, rf = 0)
 }
 \arguments{
 \item{data}{vector of data}

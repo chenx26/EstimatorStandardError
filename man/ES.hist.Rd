@@ -4,7 +4,7 @@
 \alias{ES.hist}
 \title{Compute sample Expected Shortfall}
 \usage{
-ES.hist(data, alpha = 0.1)
+ES.hist(data, alpha = 0.05)
 }
 \arguments{
 \item{data}{Vector of data}
