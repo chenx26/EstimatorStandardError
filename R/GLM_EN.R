@@ -149,7 +149,7 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
 
   # Step 3: return the estimated variance
   if (standardize){
-    return(c(exp(res %*% c(1, mean_vec))/N))
+    return(exp(sum(res * c(1, -mean_vec / sd_vec)))/N)
   }
   return(exp(res[1])/N)
 }

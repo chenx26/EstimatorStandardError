@@ -5,7 +5,7 @@
 \title{Compute the standard error of the mean of the data using glmnet_exp}
 \usage{
 SE.glmnet_exp(data, ..., d = 7, alpha = 0.5, keep = 1,
-  standardize.periodogram = TRUE)
+  standardize = FALSE)
 }
 \arguments{
 \item{data}{vector of data}
