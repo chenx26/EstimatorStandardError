@@ -105,7 +105,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 #' @export
 #'
 
-SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize.periodogram = TRUE){
+SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
 
   N=length(data)
   # Step 1: compute the periodograms
@@ -133,6 +133,14 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize.periodogra
   }
 
   # b0 = rnorm(d + 1)
+
+  # standardize x.mat
+  if (standardize){
+  for(i in 2:ncol(x.mat)){
+    tmp = x.mat[,i]
+    x.mat[,i] = (tmp - mean(tmp)) / sd(tmp)
+  }
+  }
 
   # fit the glmnet_exp model
   res = glmnet_exp(x.mat, my.periodogram, ..., alpha = alpha)
