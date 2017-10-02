@@ -135,6 +135,8 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
   # b0 = rnorm(d + 1)
 
   # standardize x.mat
+  mean_vec = apply(x.mat[,-1], 2, mean)
+  sd_vec = apply(x.mat[,-1], 2, sd)
   if (standardize){
   for(i in 2:ncol(x.mat)){
     tmp = x.mat[,i]
@@ -146,6 +148,9 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
   res = glmnet_exp(x.mat, my.periodogram, ..., alpha = alpha)
 
   # Step 3: return the estimated variance
+  if (standardize){
+    return(c(exp(res %*% c(1, mean_vec))/N))
+  }
   return(exp(res[1])/N)
 }
 
