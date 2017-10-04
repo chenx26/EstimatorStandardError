@@ -105,7 +105,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 #' @export
 #'
 
-SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
+SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE, return.coeffs = FALSE){
 
   N=length(data)
   # Step 1: compute the periodograms
@@ -147,7 +147,20 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE){
   # fit the glmnet_exp model
   res = glmnet_exp(x.mat, my.periodogram, ..., alpha = alpha)
 
-  # Step 3: return the estimated variance
+
+  # Step 3: return the estimated variance, and coeffs if return.coeffs = TRUE
+  if(return.coeffs){
+    if(standardize){
+      variance = exp(sum(res * c(1, -mean_vec / sd_vec)))/N
+      coeffs = res
+      return(list(variance, coeffs))
+    }
+    variance = exp(res[1])/N
+    coeffs = res
+    return(list(variance, coeffs))
+  }
+
+
   if (standardize){
     return(exp(sum(res * c(1, -mean_vec / sd_vec)))/N)
   }
