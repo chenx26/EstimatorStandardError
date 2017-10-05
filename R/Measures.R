@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' SR(rnorm(10))
-SR=function(data,rf=0){
+SR=function(data,...,rf=0){
   mu.hat=mean(data)
   sigma.hat=sd(data)
   return((mu.hat-rf)/sigma.hat)
@@ -29,7 +29,7 @@ SR=function(data,rf=0){
 #'
 #' @examples
 #' VaR.hist(rnorm(10))
-VaR.hist=function(data,alpha=0.05){
+VaR.hist=function(data,...,alpha=0.05){
   return(-quantile(data,alpha))
 }
 
@@ -44,7 +44,7 @@ VaR.hist=function(data,alpha=0.05){
 #'
 #' @examples
 #' ES(rnorm(10))
-ES.hist=function(data,alpha=0.05){
+ES.hist=function(data,...,alpha=0.05){
   return(-mean(data[data<=quantile(data,alpha)]))
 }
 
@@ -61,7 +61,7 @@ ES.hist=function(data,alpha=0.05){
 #' @examples
 #' RES(rnorm(1000))
 
-RES=function(data,alpha=0.01,beta=0.1){
+RES=function(data,...,alpha=0.01,beta=0.1){
   return(-mean(data[(data<=quantile(data,beta))&(data>=quantile(data,alpha))]))
 }
 
@@ -76,7 +76,7 @@ RES=function(data,alpha=0.01,beta=0.1){
 #'
 #' @examples
 #' SoR(rnorm(10))
-SoR = function(data, rf = 0){
+SoR = function(data, ..., rf = 0){
   mu.hat = mean(data)
   sigma.minus.hat = sqrt(mean((data-mu.hat)^2*(data<=mu.hat)))
   SoR.hat = (mu.hat-rf)/sigma.minus.hat
