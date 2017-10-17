@@ -4,7 +4,7 @@
 \alias{SR}
 \title{Compute sample Sharpe Ratio from data}
 \usage{
-SR(data, rf = 0)
+SR(data, ..., rf = 0)
 }
 \arguments{
 \item{data}{Vector of data}

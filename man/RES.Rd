@@ -4,7 +4,7 @@
 \alias{RES}
 \title{Compute sample Robust Expected Shortfall}
 \usage{
-RES(data, alpha = 0.01, beta = 0.1)
+RES(data, ..., alpha = 0.01, beta = 0.1)
 }
 \arguments{
 \item{data}{Vector of data}

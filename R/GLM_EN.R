@@ -105,7 +105,20 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 #' @export
 #'
 
-SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE, return.coeffs = FALSE){
+SE.glmnet_exp=function(data, ...,
+                       d=7, alpha=0.5,
+                       keep=1,
+                       standardize = FALSE,
+                       return.coeffs = FALSE,
+                       prewhiten = FALSE){
+
+  ##### perform prewhitening
+  if(prewhiten){
+    res.ar = ar(data, ...)
+#    res.ar = ar(data)
+    ar.coeffs = res.ar$ar
+    data = na.omit(res.ar$resid)
+  }
 
   N=length(data)
   # Step 1: compute the periodograms
@@ -123,8 +136,6 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE, r
   my.periodogram=my.periodogram[1:floor(nfreq*keep)]
 
   # standardize
-
-  # Step 2: use GLM with BFGS optimization
 
   # create 1, x, x^2, ..., x^d
   x.mat=rep(1,length(my.freq))
@@ -146,25 +157,35 @@ SE.glmnet_exp=function(data, ..., d=7, alpha=0.5, keep=1, standardize = FALSE, r
 
   # fit the glmnet_exp model
   res = glmnet_exp(x.mat, my.periodogram, ..., alpha = alpha)
-
+#  res = glmnet_exp(x.mat, my.periodogram, alpha = alpha)
 
   # Step 3: return the estimated variance, and coeffs if return.coeffs = TRUE
   if(return.coeffs){
     if(standardize){
       variance = exp(sum(res * c(1, -mean_vec / sd_vec)))/N
+      if(prewhiten)
+        variance = variance / ( 1 - sum(ar.coeffs))
       coeffs = res
       return(list(variance, coeffs))
     }
     variance = exp(res[1])/N
+    if(prewhiten)
+      variance = variance / ( 1 - sum(ar.coeffs))
     coeffs = res
     return(list(variance, coeffs))
   }
 
 
   if (standardize){
-    return(exp(sum(res * c(1, -mean_vec / sd_vec)))/N)
+    variance = exp(sum(res * c(1, -mean_vec / sd_vec)))/N
+    if(prewhiten)
+      variance = variance / ( 1 - sum(ar.coeffs))
+    return(variance)
   }
-  return(exp(res[1])/N)
+  variance = exp(res[1])/N
+  if(prewhiten)
+    variance = variance / ( 1 - sum(ar.coeffs))
+  return(variance)
 }
 
 

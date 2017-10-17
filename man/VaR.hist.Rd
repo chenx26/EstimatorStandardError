@@ -4,7 +4,7 @@
 \alias{VaR.hist}
 \title{Compute sample value-at-risk}
 \usage{
-VaR.hist(data, alpha = 0.05)
+VaR.hist(data, ..., alpha = 0.05)
 }
 \arguments{
 \item{data}{Vector of data}

@@ -4,7 +4,7 @@
 \alias{SoR}
 \title{Compute sample Sortino Ratio with mean threshold}
 \usage{
-SoR(data, rf = 0)
+SoR(data, ..., rf = 0)
 }
 \arguments{
 \item{data}{vector of data}
