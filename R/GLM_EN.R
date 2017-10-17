@@ -164,13 +164,13 @@ SE.glmnet_exp=function(data, ...,
     if(standardize){
       variance = exp(sum(res * c(1, -mean_vec / sd_vec)))/N
       if(prewhiten)
-        variance = variance / ( 1 - sum(ar.coeffs))
+        variance = variance / ( 1 - sum(ar.coeffs))^2
       coeffs = res
       return(list(variance, coeffs))
     }
     variance = exp(res[1])/N
     if(prewhiten)
-      variance = variance / ( 1 - sum(ar.coeffs))
+      variance = variance / ( 1 - sum(ar.coeffs))^2
     coeffs = res
     return(list(variance, coeffs))
   }
@@ -179,12 +179,12 @@ SE.glmnet_exp=function(data, ...,
   if (standardize){
     variance = exp(sum(res * c(1, -mean_vec / sd_vec)))/N
     if(prewhiten)
-      variance = variance / ( 1 - sum(ar.coeffs))
+      variance = variance / ( 1 - sum(ar.coeffs))^2
     return(variance)
   }
   variance = exp(res[1])/N
   if(prewhiten)
-    variance = variance / ( 1 - sum(ar.coeffs))
+    variance = variance / ( 1 - sum(ar.coeffs))^2
   return(variance)
 }
 
