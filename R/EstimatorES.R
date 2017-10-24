@@ -197,7 +197,7 @@ SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1, stand
     x = (x - mean(x))/sd(x)
   }
   data.IF = myfun.IF(x, ...)
-  tmp = SE.glmnet_exp(data.IF, d = d, alpha = alpha.lasso, keep = keep)
+  tmp = SE.glmnet_exp(data.IF, ..., d = d, alpha = alpha.lasso, keep = keep)
   if(standardize){
     return(sqrt(tmp) * x.sigma)
   }
