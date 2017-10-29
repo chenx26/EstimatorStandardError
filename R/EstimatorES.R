@@ -191,13 +191,21 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
 #' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
-SE.IF.cor = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1, standardize = FALSE){
+SE.IF.cor = function(x, myfun.IF, ..., return.coeffs = FALSE, d = 5, alpha.lasso = 0.5, keep = 1, standardize = FALSE){
   if(standardize){
     x.sigma = sd(x)
     x = (x - mean(x))/sd(x)
   }
   data.IF = myfun.IF(x, ...)
-  tmp = SE.glmnet_exp(data.IF, ..., d = d, alpha = alpha.lasso, keep = keep)
+  tmp = SE.glmnet_exp(data.IF,  return.coeffs = return.coeffs, d = d, alpha = alpha.lasso, keep = keep)
+  if(return.coeffs){
+    coeffs = tmp[[2]]
+    tmp = tmp[[1]]
+    if(standardize){
+      return(sqrt(tmp) * x.sigma)
+    }
+    return(list(sqrt(tmp), coeffs))
+  }
   if(standardize){
     return(sqrt(tmp) * x.sigma)
   }
