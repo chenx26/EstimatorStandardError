@@ -44,8 +44,8 @@ VaR.hist=function(data,...,alpha=0.05){
 #'
 #' @examples
 #' ES(rnorm(10))
-ES.hist=function(data,...,alpha=0.05){
-  return(-mean(data[data<=quantile(data,alpha)]))
+ES.hist=function(data,...,alpha.ES=0.05){
+  return(-mean(data[data<=quantile(data,alpha.ES)]))
 }
 
 #' Compute sample Robust Expected Shortfall

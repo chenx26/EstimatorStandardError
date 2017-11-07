@@ -106,12 +106,11 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 #'
 
 SE.glmnet_exp=function(data, ...,
-                       d=7, alpha=0.5,
+                       d=7, alpha.EN=0.5,
                        keep=1,
                        standardize = FALSE,
                        return.coeffs = FALSE,
                        prewhiten = FALSE){
-
   ##### perform prewhitening
   if(prewhiten){
     res.ar = ar(data, ...)
@@ -156,7 +155,7 @@ SE.glmnet_exp=function(data, ...,
   }
 
   # fit the glmnet_exp model
-  res = glmnet_exp(x.mat, my.periodogram, ..., alpha = alpha)
+  res = glmnet_exp(x.mat, my.periodogram, ..., alpha.EN = alpha.EN)
 #  res = glmnet_exp(x.mat, my.periodogram, alpha = alpha)
 
   # Step 3: return the estimated variance, and coeffs if return.coeffs = TRUE

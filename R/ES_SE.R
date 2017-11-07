@@ -193,7 +193,7 @@ ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
       res=list(ES=myES)
       # for each of the method specified in se.method, compute the standard error
       for(mymethod in se.method){
-        res[[mymethod]]=EstimatorSE(R, ..., estimator.fun = "ES", se.method = mymethod, alpha=1-p)
+        res[[mymethod]]=EstimatorSE(R, ..., estimator.fun = "ES", se.method = mymethod, alpha.ES = 1-p)
       }
       return(res)
     }

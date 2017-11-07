@@ -4,7 +4,7 @@
 \alias{ES.IF}
 \title{Influence Function of Expected Shortfall (ES)}
 \usage{
-ES.IF(data, ..., alpha = 0.05)
+ES.IF(data, ..., alpha.ES = 0.05)
 }
 \arguments{
 \item{data}{Vector of the data}

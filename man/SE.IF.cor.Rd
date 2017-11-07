@@ -4,8 +4,8 @@
 \alias{SE.IF.cor}
 \title{Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp}
 \usage{
-SE.IF.cor(x, myfun.IF, ..., return.coeffs = FALSE, d = 5,
-  alpha.lasso = 0.5, keep = 1, standardize = FALSE)
+SE.IF.cor(x, myfun.IF, ..., return.coeffs = FALSE, d = 5, alpha.EN = 0.5,
+  keep = 1, standardize = FALSE)
 }
 \arguments{
 \item{x}{the vector of data}
@@ -16,11 +16,11 @@ SE.IF.cor(x, myfun.IF, ..., return.coeffs = FALSE, d = 5,
 
 \item{d}{maximum order of the polynomial}
 
-\item{alpha.lasso}{weight for the elastic net}
-
 \item{keep}{portion of frequencies to be used}
 
 \item{standardize}{whether to standardize data when computing standard error}
+
+\item{alpha.lasso}{weight for the elastic net}
 }
 \value{
 the standard error of the measure

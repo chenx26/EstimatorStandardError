@@ -4,7 +4,7 @@
 \alias{SE.glmnet_exp}
 \title{Compute the standard error of the mean of the data using glmnet_exp}
 \usage{
-SE.glmnet_exp(data, ..., d = 7, alpha = 0.5, keep = 1,
+SE.glmnet_exp(data, ..., d = 7, alpha.EN = 0.5, keep = 1,
   standardize = FALSE, return.coeffs = FALSE, prewhiten = FALSE)
 }
 \arguments{
@@ -12,9 +12,9 @@ SE.glmnet_exp(data, ..., d = 7, alpha = 0.5, keep = 1,
 
 \item{d}{degree of polynomial}
 
-\item{alpha}{weight for Elastic Net regularizer}
-
 \item{keep}{what portion of sample spectral density to use for model fitting}
+
+\item{alpha}{weight for Elastic Net regularizer}
 }
 \value{
 variance of the mean of the data
