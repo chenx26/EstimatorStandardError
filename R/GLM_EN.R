@@ -8,15 +8,20 @@
 #'
 #' @examples
 #' myperiodogram(rnorm(10))
-myperiodogram=function(data,max.freq=0.5){
+myperiodogram=function(data,max.freq=0.5, twosided = FALSE){
   ## data.fft=myfft(data) This is very slow
   data.fft=fft(data)
   N=length(data)
   #   tmp=1:N
   #   inset=tmp[(1:N)<floor(N/2)]
-  tmp = Mod(data.fft[1:floor(N/2)])^2/N
+  tmp = Mod(data.fft[2:floor(N/2)])^2/N
   tmp = sapply(tmp, function(x) max(0.00001,x))
-  return(list(spec=tmp,freq=((0:(floor(N/2)-1))/N)))
+  freq = ((1:(floor(N/2)-1))/N)
+  if (twosided){
+    tmp = c(rev(tmp), tmp)
+    freq = c(-rev(freq), freq)
+  }
+  return(list(spec=tmp,freq=freq))
 }
 
 
@@ -54,8 +59,8 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
   my.periodogram=my.periodogram$spec
 
   # remove values of frequency 0 as it does not contain information about the variance
-  my.freq=my.freq[-1]
-  my.periodogram=my.periodogram[-1]
+  # my.freq=my.freq[-1]
+  # my.periodogram=my.periodogram[-1]
 
   # implement cut-off
   nfreq=length(my.freq)
@@ -126,8 +131,8 @@ SE.glmnet_exp=function(data, ...,
   my.periodogram=my.periodogram$spec
 
   # remove values of frequency 0 as it does not contain information about the variance
-  my.freq=my.freq[-1]
-  my.periodogram=my.periodogram[-1]
+  # my.freq=my.freq[-1]
+  # my.periodogram=my.periodogram[-1]
 
   # implement cut-off
   nfreq=length(my.freq)

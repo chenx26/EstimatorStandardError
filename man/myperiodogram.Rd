@@ -4,7 +4,7 @@
 \alias{myperiodogram}
 \title{Compute the periodogram as defined in H&W 1981}
 \usage{
-myperiodogram(data, max.freq = 0.5)
+myperiodogram(data, max.freq = 0.5, twosided = FALSE)
 }
 \arguments{
 \item{data}{Vector of data}
