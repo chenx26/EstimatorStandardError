@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' myperiodogram(rnorm(10))
-myperiodogram=function(data,max.freq=0.5, twosided = FALSE){
+myperiodogram=function(data,..., max.freq=0.5, twosided = FALSE){
   ## data.fft=myfft(data) This is very slow
   data.fft=fft(data)
   N=length(data)
@@ -54,7 +54,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 
   N=length(data)
   # Step 1: compute the periodograms
-  my.periodogram=myperiodogram(data)
+  my.periodogram=myperiodogram(data, ...)
   my.freq=my.periodogram$freq
   my.periodogram=my.periodogram$spec
 
@@ -126,7 +126,7 @@ SE.glmnet_exp=function(data, ...,
 
   N=length(data)
   # Step 1: compute the periodograms
-  my.periodogram=myperiodogram(data)
+  my.periodogram=myperiodogram(data, ...)
   my.freq=my.periodogram$freq
   my.periodogram=my.periodogram$spec
 
