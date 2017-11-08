@@ -191,7 +191,8 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
 #' @author Xin Chen, \email{chenx26@uw.edu}
 #'
 
-SE.IF.cor = function(x, myfun.IF, ..., return.coeffs = FALSE, d = 5, alpha.EN = 0.5, keep = 1, standardize = FALSE){
+SE.IF.cor = function(x, myfun.IF, ..., return.coeffs = FALSE, d.GLM.EN = 5, alpha.EN = 0.5, keep = 1, standardize = FALSE){
+  d = d.GLM.EN
   if(standardize){
     x.sigma = sd(x)
     x = (x - mean(x))/sd(x)
