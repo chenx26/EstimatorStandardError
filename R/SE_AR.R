@@ -4,18 +4,23 @@
 #' @param max.order maximum order for AR model, default 10
 #' @param criteria model selection criteria, "AIC" or "BIC"
 #' @param all.results if TRUE, return all fitted model along with longrun variance, otherwise return lrvar only
+#' @param AR.method method used to fit the AR model, default "ML"
 #'
 #' @return lrvar or a list with first element lrvar and second element a list of all fitted model
 #' @export
 #'
 #' @examples
 #' SE.AR(rnorm(100))
-SE.AR = function(x, max.order = 10, criteria = c("AIC", "BIC"), all.results = FALSE){
+SE.AR = function(x, max.order = 10,
+                 criteria = c("AIC", "BIC"),
+                 all.results = FALSE,
+                 AR.method = c("ML", "CSS-ML", "CSS")){
   orders = seq(0, max.order, by = 1)
   criteria = criteria[1]
+  AR.method = AR.method[1]
   res = list()
   for (i in 1:length(orders)){
-    res[[i]] = arima(x, order = c(orders[i], 0, 0))
+    res[[i]] = arima(x, order = c(orders[i], 0, 0), method = AR.method)
   }
   if(criteria == "AIC"){
     IC_vector = sapply(res, AIC)

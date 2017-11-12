@@ -4,7 +4,8 @@
 \alias{SE.AR}
 \title{Compute long run variance by fitting AR model with AIC or BIC model selection}
 \usage{
-SE.AR(x, max.order = 10, criteria = c("AIC", "BIC"), all.results = FALSE)
+SE.AR(x, max.order = 10, criteria = c("AIC", "BIC"), all.results = FALSE,
+  AR.method = c("ML", "CSS-ML", "CSS"))
 }
 \arguments{
 \item{x}{vector of input data time series}
@@ -14,6 +15,8 @@ SE.AR(x, max.order = 10, criteria = c("AIC", "BIC"), all.results = FALSE)
 \item{criteria}{model selection criteria, "AIC" or "BIC"}
 
 \item{all.results}{if TRUE, return all fitted model along with longrun variance, otherwise return lrvar only}
+
+\item{AR.method}{method used to fit the AR model, default "ML"}
 }
 \value{
 lrvar or a list with first element lrvar and second element a list of all fitted model
