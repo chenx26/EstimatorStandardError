@@ -54,7 +54,7 @@ SE.GLM.LASSO=function(data,d=5,alpha=1,keep=1){
 
   N=length(data)
   # Step 1: compute the periodograms
-  my.periodogram=myperiodogram(data, ...)
+  my.periodogram=myperiodogram(data, ..., keep = keep)
   my.freq=my.periodogram$freq
   my.periodogram=my.periodogram$spec
 
@@ -126,7 +126,7 @@ SE.glmnet_exp=function(data, ...,
 
   N=length(data)
   # Step 1: compute the periodograms
-  my.periodogram=myperiodogram(data, ...,  keep)
+  my.periodogram=myperiodogram(data, ...,  keep = keep)
   my.freq=my.periodogram$freq
   my.periodogram=my.periodogram$spec
 
