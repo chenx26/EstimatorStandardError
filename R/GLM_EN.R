@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' myperiodogram(rnorm(10))
-myperiodogram=function(data,..., max.freq=0.5, twosided = FALSE){
+myperiodogram=function(data,..., max.freq=0.5, twosided = FALSE, keep = 1){
   ## data.fft=myfft(data) This is very slow
   data.fft=fft(data)
   N=length(data)
@@ -17,14 +17,14 @@ myperiodogram=function(data,..., max.freq=0.5, twosided = FALSE){
   tmp = Mod(data.fft[2:floor(N/2)])^2/N
   tmp = sapply(tmp, function(x) max(0.00001,x))
   freq = ((1:(floor(N/2)-1))/N)
+  tmp = tmp[1:floor(length(tmp) * keep)]
+  freq = freq[1:floor(length(freq) * keep)]
   if (twosided){
     tmp = c(rev(tmp), tmp)
     freq = c(-rev(freq), freq)
   }
   return(list(spec=tmp,freq=freq))
 }
-
-
 
 ###### function to compute the standard error of sample mean of the data, to get asymptotic SE, multiply the SE by sqrt(length(data))
 ###### Using GLM with L1 regularization to fit a polynomial from the periodogram
@@ -126,7 +126,7 @@ SE.glmnet_exp=function(data, ...,
 
   N=length(data)
   # Step 1: compute the periodograms
-  my.periodogram=myperiodogram(data, ...)
+  my.periodogram=myperiodogram(data, ...,  keep)
   my.freq=my.periodogram$freq
   my.periodogram=my.periodogram$spec
 
@@ -136,8 +136,8 @@ SE.glmnet_exp=function(data, ...,
 
   # implement cut-off
   nfreq=length(my.freq)
-  my.freq=my.freq[1:floor(nfreq*keep)]
-  my.periodogram=my.periodogram[1:floor(nfreq*keep)]
+  # my.freq=my.freq[1:floor(nfreq*keep)]
+  # my.periodogram=my.periodogram[1:floor(nfreq*keep)]
 
   # standardize
 
