@@ -176,7 +176,7 @@ SE.BOOT.cor = function(x, myfun, myfun.IF, ..., nsim = 1000,
   return(sd(res$t))
 }
 
-#' Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp
+#' Compute the standard error using GLM-EN approach for serially correlated data using glmExpENRcpp
 #'
 #' @param x the vector of data
 #' @param myfun.IF the influene function of the measure

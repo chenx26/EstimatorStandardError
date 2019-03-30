@@ -2,7 +2,7 @@
 % Please edit documentation in R/EstimatorES.R
 \name{SE.IF.cor}
 \alias{SE.IF.cor}
-\title{Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp}
+\title{Compute the standard error using GLM-EN approach for serially correlated data using glmExpENRcpp}
 \usage{
 SE.IF.cor(x, myfun.IF, ..., return.coeffs = FALSE, d.GLM.EN = 5,
   alpha.EN = 0.5, keep = 1, standardize = FALSE)
@@ -26,7 +26,7 @@ SE.IF.cor(x, myfun.IF, ..., return.coeffs = FALSE, d.GLM.EN = 5,
 the standard error of the measure
 }
 \description{
-Compute the standard error using GLM-EN approach for serially correlated data using glmnetRcpp
+Compute the standard error using GLM-EN approach for serially correlated data using glmExpENRcpp
 }
 \author{
 Xin Chen, \email{chenx26@uw.edu}
