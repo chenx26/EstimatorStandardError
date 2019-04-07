@@ -2,7 +2,7 @@
 # $Id$
 ###############################################################################
 
-#' calculates Expected Shortfall(ES) (or Conditional Value-at-Risk(CVaR) for
+#' Calculates Expected Shortfall(ES) (or Conditional Value-at-Risk(CVaR) for
 #' univariate and component, using a variety of analytical methods.
 #'
 #' Calculates Expected Shortfall(ES) (also known as) Conditional Value at
@@ -10,6 +10,10 @@
 #' and marginal cases using a variety of analytical methods.
 #' The standard error of the estimates can also be computed by supplying the
 #' \code{se.method} parameter.
+#' This function builds upon the same function in PerformanceAnalytics package by
+#' adding functionalities to compute the standard errors of the point estimates.
+#' The documentation involving computing the point estimate is due to corresponding
+#' authors of the PerformanceAnalytics package.
 #'
 #'
 #' @export
@@ -104,11 +108,13 @@
 #' @examples
 #'
 #'     data(edhec)
-#'
+#'     ############### NEW USAGE: Computing Point Estimate and Standard Error at the same time
 #'     # use more than one method at the same time
 #'     res=ES.SE(edhec, p=.95, method="historical",
 #'     se.method = c("IFiid","IFcor","BOOTiid","BOOTcor"))
 #'     printSE(res)
+#'
+#'     ############### OLD USAGE: Computing Point Estimate Onlt
 #'
 #'     # now use Gaussian
 #'     ES.SE(edhec, p=.95, method="gaussian")
@@ -126,8 +132,8 @@
 #'
 #'     # add Component ES for the equal weighted portfolio
 #'     ES.SE(edhec, clean="boudt", portfolio_method="component")
-#' @export ETL.SE CVaR.SE ES.SE
-ETL.SE <- CVaR.SE <- ES.SE <- function (R=NULL , p=0.95, ...,
+#' @export ES.SE ETL.SE CVaR.SE
+ES.SE <- CVaR.SE <- ETL.SE <- function (R=NULL , p=0.95, ...,
                                method=c("modified","gaussian","historical"),
                                clean=c("none","boudt", "geltner"),
                                portfolio_method=c("single","component"),

@@ -7,9 +7,9 @@
 \usage{
 VaR.SE(R = NULL, p = 0.95, ..., method = c("modified", "gaussian",
   "historical", "kernel"), clean = c("none", "boudt", "geltner"),
-  portfolio_method = c("single", "component", "marginal"), weights = NULL,
-  mu = NULL, sigma = NULL, m3 = NULL, m4 = NULL, invert = TRUE,
-  se.method = "none")
+  portfolio_method = c("single", "component", "marginal"),
+  weights = NULL, mu = NULL, sigma = NULL, m3 = NULL, m4 = NULL,
+  invert = TRUE, se.method = "none")
 }
 \arguments{
 \item{R}{an xts, vector, matrix, data frame, timeSeries or zoo object of

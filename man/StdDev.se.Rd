@@ -6,9 +6,9 @@
 calculates component contribution to standard deviation of a portfolio}
 \usage{
 StdDev.SE(R, ..., clean = c("none", "boudt", "geltner"),
-  portfolio_method = c("single", "component"), weights = NULL, mu = NULL,
-  sigma = NULL, use = "everything", method = c("pearson", "kendall",
-  "spearman"), se.method = "none")
+  portfolio_method = c("single", "component"), weights = NULL,
+  mu = NULL, sigma = NULL, use = "everything",
+  method = c("pearson", "kendall", "spearman"), se.method = "none")
 }
 \arguments{
 \item{R}{a vector, matrix, data frame, timeSeries or zoo object of asset
@@ -93,9 +93,7 @@ deviation.
     StdDev.SE(edhec, clean="boudt", portfolio_method="component")
 
     # next use more than one method at the same time
-    h2o.init()
     (res=StdDev.SE(edhec, se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-    h2o.shutdown(prompt=FALSE)
     printSE(res)
 
 

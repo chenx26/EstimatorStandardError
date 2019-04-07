@@ -89,10 +89,8 @@ SharpeRatio.SE(edhec,Rf = .04/12)
 
 # Test the standard error functionalities
 \dontrun{
-h2o.init()
 (res=SharpeRatio.SE(edhec, FUN = "StdDev",
                    se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-# h2o.shutdown(prompt=FALSE)
 printSE(res, round.digit = 5)
 }
 }
