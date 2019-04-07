@@ -17,16 +17,14 @@
 #' @examples
 #' data(edhec)
 #' EstimatorSE(edhec,estimator.fun="SD",se.method="IFiid")
-#' h2o.init()
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="IFcor")
-#' # h2o.shutdown(prompt=FALSE)
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTiid", nsim=100)
 #' EstimatorSE(edhec,estimator.fun="ES",se.method="BOOTcor", nsim=100,
 #' sim = "fixed", l = round(nrow(edhec)/5))
 
 EstimatorSE = function(data, ...,
                    estimator.fun = c("Mean","SD","VaR","ES","SR","SoR","STARR"),
-                   se.method = c("none","IFiid","IFcor", "IFcor.h2o", "BOOTiid","BOOTcor")){
+                   se.method = c("none","IFiid","IFcor", "BOOTiid","BOOTcor")){
   estimator.fun = estimator.fun[1]
   se.method = se.method[1]
   myfun = switch(estimator.fun,
@@ -58,7 +56,6 @@ EstimatorSE = function(data, ...,
     none = NULL,
     IFiid = SE.xts(data, SE.IF.iid, myfun, myfun.IF, ...),
     IFcor = SE.xts(data, SE.IF.cor, myfun, myfun.IF, ...),
-    IFcor.h2o = SE.xts(data, SE.IF.cor.h2o, myfun, myfun.IF, ...),
     BOOTiid = SE.xts(data, SE.BOOT.iid, myfun, myfun.IF, ...),
     BOOTcor = SE.xts(data, SE.BOOT.cor, myfun, myfun.IF,...)
   )
@@ -112,26 +109,6 @@ SE.IF.iid = function(x, myfun.IF, ...){
   x.IF.2 = x.IF^2
   tmp = mean(x.IF.2)
   return(sqrt(tmp/N))
-}
-
-#' Compute the standard error using GLM-EN approach for serially correlated data using h2o package
-#'
-#' @param x the vector of data
-#' @param myfun.IF the influene function of the measure
-#' @param d maximum order of the polynomial
-#' @param alpha.lasso weight for the elastic net
-#' @param keep portion of frequencies to be used
-#' @param ... other parameters
-#'
-#' @return the standard error of the measure
-#' @export
-#' @author Xin Chen, \email{chenx26@uw.edu}
-#'
-
-SE.IF.cor.h2o = function(x, myfun.IF, ..., d = 5, alpha.lasso = 0.5, keep = 1){
-  data.IF = myfun.IF(x, ...)
-  tmp = SE.GLM.LASSO(data.IF, d = d, alpha = alpha.lasso, keep = keep)
-  return(sqrt(tmp))
 }
 
 #' Compute the standard error of the measure by iid bootstrapping

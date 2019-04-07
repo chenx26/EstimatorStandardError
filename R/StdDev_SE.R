@@ -82,9 +82,7 @@
 #'     StdDev.SE(edhec, clean="boudt", portfolio_method="component")
 #'
 #'     # next use more than one method at the same time
-#'     h2o.init()
 #'     (res=StdDev.SE(edhec, se.method = c("IFiid","IFcor","BOOTiid","BOOTcor")))
-#'     h2o.shutdown(prompt=FALSE)
 #'     printSE(res)
 #'
 #'
